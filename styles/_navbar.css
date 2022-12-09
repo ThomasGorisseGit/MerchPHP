@@ -1,0 +1,44 @@
+ul{
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+
+}
+a{
+    text-decoration: none;
+    color: grey;
+}
+h1{
+    color: grey;
+}
+.main-title{
+    background-color: #35373B;
+    display: flex;
+    width: 100%;
+}
+.title{
+    display: flex;
+    align-items: center
+}
+.logo{
+    width: 50px;
+    height: 50px;
+}
+.search{
+    display: flex;
+    align-items: center;
+}
+.user{
+    display: flex;
+    align-items: center;
+}
+.research-bar{
+    width:300px;
+    height:25px;
+    border-radius:25px;
+    border: none;
+
+}
