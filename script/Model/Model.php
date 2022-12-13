@@ -1,14 +1,35 @@
 <?php
 
-abstract class Model{
-    //Connexion à la base de donnée
-
+class Model{
+    private $db;
     
-    /**Renvoie la connexion à la base de données.
+    public function __construct() {
+        $this->setConnection();
+    }
+
+    /**
+     * Set the connection to the database
+     * @return void
+     */
+    public function setConnection() 
+    {
+        $host = 'localhost';
+        $user ='Site' ;
+        $pass = '#WebsiteAcces2022';
+        $name = 'phpMerch';
+        try{
+            $this->db = new PDO("mysql:host=".$host.";dbname=".$name, $user, $pass);
+        }
+        catch(PDOException $e){
+            throw Exception($e);
+        }
+    }
+    /**
+     * Renvoie la connexion à la base de données.
      * @return PDO 
      */
-    public function getConnection() : PDO
+    protected function getConnection() : Object
     {
-        return new PDO("","");
+        return $this->db;
     }
 }

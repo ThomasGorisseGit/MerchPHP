@@ -1,0 +1,42 @@
+/*--------------- MAIN ---------------*/
+
+main {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Liste des articles */
+.article-list {
+    background-color: aqua;
+    padding: 1% 8%;
+}
+
+/* Article */
+.article-item {
+    background-color: blueviolet;
+    display: flex;
+    padding: 5px 10px;
+}
+
+/* Image de l'article */
+.item-image {
+    width: 20vw;
+    background-color: brown;
+    border-right: solid 2px black;
+}
+
+/* Description de l'article */
+.item-content {
+    padding: 2%;
+    width: 80vw;
+    background-color: chartreuse;
+}
+
+h1.item-title {
+    font-style: bold;
+    font-size: 26px;
+    color: black;
+}
+
+.item-price {
+
+}
