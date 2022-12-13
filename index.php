@@ -62,7 +62,7 @@ $controller = new MainController();
         </nav>
     </header>
     <main>
-        <!-- Contenu de la page d'accueil -->
+        <!-- Contenu de la page d'accueil yo-->
         <section class="article-list">
             <article class="article-item">
                 <div class="item-image">photo</div>
