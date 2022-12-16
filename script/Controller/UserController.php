@@ -16,20 +16,24 @@ class UserController {
         return $this->model;
     }
     public function insertUser() : bool
-    {
+    {   
         if($this->checkUserNotInsert()) 
         {
+            echo'in';
+            echo $this->checkUserNotInsert();
             $name = $this->model->getNickname(); 
             $email = $this->model->getEmail();
             $hash = $this->model->getPassword();
-            $q="INSERT INTO User VALUES (6,'$name','$email','$hash')"; 
+            $q="INSERT INTO User VALUES (8,'$name','$email','$hash')"; 
             $db = $this->model->getConnection();
             $stmt = $db->query($q) ;
             if($stmt)
             {
+                echo "insert";
                 return true;
             }   
         }
+        echo "already exist";
         return false;
         
 
@@ -45,7 +49,7 @@ class UserController {
             'Nickname'=>$name, 
             'Email'=>$email
         ));
-        echo $stmt->num_rows . "c";
+       // TODO : Fetch data
         if($stmt->num_rows==0)
         {
             return true;
