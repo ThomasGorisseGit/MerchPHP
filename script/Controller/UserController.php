@@ -17,40 +17,18 @@ class UserController {
     }
     public function insertUser() : bool
     {
-        if($this->checkUserNotInsert())
+        if($this->checkUserNotInsert()) 
         {
-            
             $name = $this->model->getNickname(); 
             $email = $this->model->getEmail();
             $hash = $this->model->getPassword();
-            echo"as";
-            /*
-            $query = "INSERT INTO User(Nickname,Email,PasswordHash) VALUES :nickname , :email , :passwordhash";
-           
-            $sth = $this->model->getConnection()->prepare($query);
-            echo"i";
-            $result = $sth->execute(array(
-                'nickname'=>$name,
-                'email'=>$email,
-                'passwordhash'=>$hash
-            ));
-            if($result) 
-            {   
-                echo"done";
-                return true;
-            }
-        */
-        echo"w";
-            $q="INSERT INTO User VALUES (5,'$name','$email','$hash')"; 
+            $q="INSERT INTO User VALUES (6,'$name','$email','$hash')"; 
             $db = $this->model->getConnection();
-            echo",";
             $stmt = $db->query($q) ;
-            echo"h";
             if($stmt)
             {
-                echo"done";
+                return true;
             }   
-            echo"non";
         }
         return false;
         
@@ -67,10 +45,12 @@ class UserController {
             'Nickname'=>$name, 
             'Email'=>$email
         ));
-        if($stmt)
+        echo $stmt->num_rows . "c";
+        if($stmt->num_rows==0)
         {
             return true;
         }
         return false;
     }
+
 }
