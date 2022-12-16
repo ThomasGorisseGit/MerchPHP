@@ -1,4 +1,7 @@
 <?php
-require __DIR__ . "/script/Model/Model.php";
-require __DIR__ . "/script/Model/UserModel.php";
-$controllerUser = new UserModel();
+require "./script/Controller/UserController.php";
+require "./script/Model/UserModel.php";
+$user = new UserModel("Tho","ma","admin");
+$userController = new UserController();
+$userController->setModel($user);
+$userController->insertUser();

@@ -1,6 +1,6 @@
 <?php 
 
-include __DIR__ . "/Model.php";
+require "./script/Model/Model.php";
 
 
 
@@ -8,16 +8,16 @@ class UserModel extends Model{
     private string $nickname;
     private string $email;
     private string $password;
-    public function __construct(string $n, string $email, string $password)
+    public function __construct(string $name, string $email, string $password)
     {
         parent::__construct();
-        $this->nickname = $n;
+        $this->nickname = $name;
         $this->email = $email;
         $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
     public function getNickname() : string 
     {
-        return $this->getNickname;
+        return $this->nickname;
     }
     public function getEmail() : string  
     {
@@ -29,6 +29,11 @@ class UserModel extends Model{
     }
     public function getConnection() : Object
     {
-        return $this->parent::getConnection();
+        return parent::getConnection();
     }
+    public function __toString() : string
+    {
+        return $this->nickname . " " . $this->email . " " . $this->password;
+    }
+
 }

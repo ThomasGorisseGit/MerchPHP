@@ -13,15 +13,20 @@ class Model{
      */
     public function setConnection() 
     {
+        $options = [
+            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, 
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, 
+          ];
         $host = 'localhost';
         $user ='Site' ;
         $pass = '#WebsiteAcces2022';
         $name = 'phpMerch';
         try{
-            $this->db = new PDO("mysql:host=".$host.";dbname=".$name, $user, $pass);
+            $this->db = new PDO("mysql:host=".$host.";dbname=".$name, $user, $pass,$options);
         }
         catch(PDOException $e){
-            throw Exception($e);
+            error_log($e->getMessage());
+            exit("Database can't load");
         }
     }
     /**
