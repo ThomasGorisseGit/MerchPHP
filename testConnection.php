@@ -1,7 +1,8 @@
 <?php
-require "./script/Controller/UserController.php";
-require "./script/Model/UserModel.php";
-$user = new UserModel("Tho","ma","admin");
-$userController = new UserController();
-$userController->setModel($user);
-$userController->insertUser();
+require "./script/connexion.php";
+require "./script/User.php";
+/*
+It works !! 
+    $user = new User('thomas','t.@a','poto');
+    echo $user;
+*/
