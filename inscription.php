@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "./script/connexionDatabase.php";
 require "./script/User.php";
 
@@ -7,14 +8,17 @@ function createUser(string $name, string $email, string $password,PDO $db) : voi
     if(checkPassword($password))
     {
         $user = new User(htmlspecialchars(trim($name)),htmlspecialchars(trim($email)),htmlspecialchars(trim($password)));
+        $user->hashPassword();
         if($user->addUser($db))
         {
+            
             $user->startUserSession();
             if(isset($_POST["rememberMe"]))
             {
                 $user->rememberMe(); 
-                #Ca fonctionne mais il faut testé si la session fonctionne : si l'user est bien connecté
             }
+            header("Location: ./index.php");
+
         }
         else{
             echo "erreur d'insertion";
@@ -41,10 +45,10 @@ function checkPassword(string $password) : bool
 </head>
 <body>
 <form method="POST" action="">
-    <input type="text" placeholder="Nom" name="name">
-    <input type="email" placeholder="Email" name="email">
-    <input type="password" placeholder="Mot de passe" name="password">
-    <Label for="rememberMe">Remember me</Label>
+    <input type="text" placeholder="Nom" name="name" required>
+    <input type="email" placeholder="Email" name="email" required>
+    <input type="password" placeholder="Mot de passe" name="password" required>
+    <Label for="rememberMe">Se souvenir de moi</Label>
     <input type="checkbox" value="rememberMe" name="rememberMe">
     <button type="submit" name="submit" value="submit">S'inscrire</button>
 </form>

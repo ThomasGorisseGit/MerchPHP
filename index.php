@@ -1,6 +1,6 @@
 
 <?php
-
+session_start();
 
 ?>
 
@@ -23,7 +23,7 @@
         <!-- Header de la page d'accueil -->
         <div class="main-title">
             <div class="title">
-                <img class="logo" src="/assets/Logo.png" alt="Logo de l'entreprise">
+                <img class="logo" src="./assets/Logo.png" alt="Logo de l'entreprise">
                 <h1>SeinkSansGroove</h1>
             </div>
             <div class="search">
@@ -45,8 +45,7 @@
                 </form>
             </div>
             <div class="user">
-                <button class="login">Connexion</button>
-                <button class="Sign-in" onclick="location.href='inscription.php' ">Inscription</button>
+                <?php require_once("./connectionView.php"); ?>
             </div>
         </div>
         <nav>

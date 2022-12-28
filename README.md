@@ -1,16 +1,5 @@
-# MerchPHP
-Projet web en PHP dans le cadre de notre 2eme année de BUT Informatique
-
-### Faire des recherches sur l'autoLoading
-
-## TODO :
-dans le controleur :
-```php
-if($connected){
-    <?php ob_start() ?>
-    <?= TODO ?>
-    <?php $content = $ob_get_clean(); ?>
-}
-else{
-    ...
-}
+# TODO :
+- se déconnecter dans sa page de profile.
+- Ajouter un remind me dans sa page de profile
+- Système de PP 
+- Faire la gestion des articles
