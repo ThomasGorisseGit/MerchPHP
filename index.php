@@ -46,7 +46,7 @@
             </div>
             <div class="user">
                 <button class="login">Connexion</button>
-                <button class="Sign-in">Inscription</button>
+                <button class="Sign-in" onclick="location.href='inscription.php' ">Inscription</button>
             </div>
         </div>
         <nav>

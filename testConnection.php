@@ -1,8 +1,9 @@
 <?php
-require "./script/connexion.php";
+require "./script/connexionDatabase.php";
 require "./script/User.php";
-/*
-It works !! 
-    $user = new User('thomas','t.@a','poto');
-    echo $user;
-*/
+
+
+$user = new User('admin','j','admin');
+echo $user . "</br>";
+
+$user->addUser($db);
