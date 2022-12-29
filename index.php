@@ -104,4 +104,5 @@ session_start();
         <!-- Footer de la page d'accueil -->
     </footer>
 </body>
+
 </html>
