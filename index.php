@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -6,6 +5,7 @@ session_start();
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,8 +18,9 @@ session_start();
 
     <title>SeinkSansGroove</title>
 </head>
+
 <body>
-<header>
+    <header>
         <!-- Header de la page d'accueil -->
         <div class="main-title">
             <div class="title">
@@ -28,18 +29,19 @@ session_start();
             </div>
             <div class="search">
                 <ul class="searchnav">
-                    <a href="#"><li>Marques</li></a>
-                    <a href="#"><li>Panier</li></a>
+                    <a href="#">
+                        <li>Marques</li>
+                    </a>
+                    <a href="#">
+                        <li>Panier</li>
+                    </a>
                 </ul>
             </div>
             <div class="div-research-bar">
                 <form action="#">
-                    <input class="research-bar"type="text"
-                        placeholder=" Search Courses"
-                        name="search">
+                    <input class="research-bar" type="text" placeholder=" Search Courses" name="search">
                     <button>
-                        <i class=""
-                            style="font-size: 18px;">
+                        <i class="" style="font-size: 18px;">
                         </i>
                     </button>
                 </form>
@@ -49,7 +51,7 @@ session_start();
             </div>
         </div>
         <nav>
-            <ul>
+            <ul class="brands-list">
                 <li>Marshall</li>
                 <li>JBL</li>
                 <li>Bose</li>
@@ -69,7 +71,7 @@ session_start();
                         <span class="item-delivery">truck 5.32€</span>
                     </div>
                     <p class="item-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lobortis, neque egestas elementum lobortis, tellus risus molestie nisi, vitae sagittis lectus diam vitae nulla. Integer nec lorem id elit euismod condimentum.  
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lobortis, neque egestas elementum lobortis, tellus risus molestie nisi, vitae sagittis lectus diam vitae nulla. Integer nec lorem id elit euismod condimentum.
                     </p>
                     <div class="item-buttons">
                         <button class="item-button1">Fiche produit</button>
@@ -89,20 +91,21 @@ session_start();
                         <span class="item-delivery">truck 5.32€</span>
                     </div>
                     <p class="item-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lobortis, neque egestas elementum lobortis, tellus risus molestie nisi, vitae sagittis lectus diam vitae nulla. Integer nec lorem id elit euismod condimentum.  
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lobortis, neque egestas elementum lobortis, tellus risus molestie nisi, vitae sagittis lectus diam vitae nulla. Integer nec lorem id elit euismod condimentum.
                     </p>
                     <div class="item-buttons">
                         <button class="item-button1">Fiche produit</button>
                         <button class="item-button2">Ajouter au panier</button>
                     </div>
                     <span class="item-date">4 décembre 2022</span>
-                    
+
                 </div>
             </article>
-        </section>    
+        </section>
     </main>
     <footer>
         <!-- Footer de la page d'accueil -->
     </footer>
 </body>
+
 </html>

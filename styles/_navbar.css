@@ -1,3 +1,8 @@
+
+* {
+    font-family: 'Inter', sans-serif;
+}
+
 ul{
     margin: 0;
     padding: 0;
@@ -10,8 +15,11 @@ a{
     text-decoration: none;
     color: grey;
 }
-h1{
-    color: grey;
+h1#title{
+    color: white;
+    font-size: 1.2rem;
+    font-style: oblique;
+    padding: 3%;
 }
 .main-title{
     background-color: #35373B;
@@ -57,4 +65,22 @@ h1{
     border-radius:25px;
     border: none;
 
+}
+
+/* Liste des marques */
+.brands-list {
+    background-color: #1D1F20;
+    display: flex;
+    justify-content: center;
+    background-image: url('./assets/topmarques.svg');
+    background-size: 100% 100%;
+}
+
+.brands-list li {
+    margin: 24px 10px;
+    padding: 8px 30px;
+    background-color: #2F2F2F;
+    border: #35373B 1px solid;
+    border-radius: 5px;
+    color: white;
 }
