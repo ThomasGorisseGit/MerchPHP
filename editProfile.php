@@ -2,6 +2,10 @@
 session_start();
 require "./script/connexionDatabase.php";
 require "./script/User.php";
+if(!isset($_SESSION["password"]) or empty($_SESSION["password"]))
+{
+    header("Location:index.php");
+}
 $query = "SELECT * FROM User WHERE email= ?";
 $stmt = $db->prepare($query);
 $stmt->execute(array($_SESSION["email"]));
