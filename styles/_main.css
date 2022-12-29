@@ -6,13 +6,13 @@ main {
 
 /* Liste des articles */
 .article-list {
-    background-color: aqua;
-    padding: 1% 8%;
+    background-color: #E9EAED;
+    padding: 1% 10%;
 }
 
 /* Article */
 .article-item {
-    background-color: blueviolet;
+    background-color: #E9EAED;
     display: flex;
     padding: 5px 10px;
 }
@@ -21,14 +21,14 @@ main {
 .item-image {
     width: 20vw;
     background-color: brown;
-    border-right: solid 2px black;
+    border-right: solid 2px rgb(37, 37, 37);
 }
 
 /* Description de l'article */
 .item-content {
     padding: 2%;
     width: 80vw;
-    background-color: chartreuse;
+    background-color: white;
 }
 
 h1.item-title {
@@ -38,5 +38,46 @@ h1.item-title {
 }
 
 .item-price {
+    color: rgb(194, 0, 0);
+    font-size: larger;
+    font-weight: bold;
+}
 
+.truck{
+    width: 30px;
+    margin-left: 20px;
+}
+
+/* boutons */
+.item-buttons{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.item-button-grey{
+    background-color:#bfbfbf;
+	border-radius:4px;
+	border:1px solid #BFBFBF;
+	cursor:pointer;
+	color: black;
+	padding:10px 17px;
+    margin-right: 1%;
+}
+
+.item-button-green{
+    background-color:#12b034;
+	border-radius:4px;
+	border:1px solid #12b034;
+	cursor:pointer;
+	color:#ffffff;
+	padding:10px 17px;
+}
+
+/* date */
+.date-word{
+    font-weight: bold;
+}
+
+.item-date{
+    color: #484848;
 }
