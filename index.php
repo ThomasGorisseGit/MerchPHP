@@ -20,6 +20,7 @@ session_start();
 <body>
     <header>
         <!-- Header de la page d'accueil -->
+        <h1>test</h1>
         <div class="main-title">
 
             <img class="logo" src="./assets/Logo.png" alt="Logo de l'entreprise">
