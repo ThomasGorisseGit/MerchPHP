@@ -43,12 +43,10 @@ session_start();
                 <?php require_once("./connectionView.php"); ?>
             </div>
         </div>
-        <nav>
-            <ul class="brands-list">
-                <li>Marshall</li>
-                <li>JBL</li>
-                <li>Bose</li>
-            </ul>
+        <nav class="brands-list">
+            <button>Marshall</button>
+            <button>JBL</button>
+            <button>Bose</button>
         </nav>
     </header>
     <main>
