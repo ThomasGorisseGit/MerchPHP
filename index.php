@@ -59,7 +59,8 @@ session_start();
                     <h1 class="item-title">JBL - Flip 5 Noir</h1>
                     <div class="item-price-delivery">
                         <span class="item-price">188.56€</span>
-                        <span class="item-delivery">truck 5.32€</span>
+                        <img src="./assets/truck.png" class="truck">
+                        <span class="item-delivery">5.32€</span>
                     </div>
                     <p class="item-description">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lobortis, neque egestas elementum lobortis, tellus risus molestie nisi, vitae sagittis lectus diam vitae nulla. Integer nec lorem id elit euismod condimentum.
@@ -81,7 +82,7 @@ session_start();
                     <div class="item-price-delivery">
                         <span class="item-price">188.56€</span>
                         <img src="./assets/truck.png" class="truck">
-                        <span class="item-delivery">5.32€</span>
+                        <span class="item-delivery">500000.32€</span>
                     </div>
                     <p class="item-description">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lobortis, neque egestas elementum lobortis, tellus risus molestie nisi, vitae sagittis lectus diam vitae nulla. Integer nec lorem id elit euismod condimentum.
@@ -90,8 +91,8 @@ session_start();
                         <button class="item-button-grey">Fiche produit</button>
                         <button class="item-button-green">Ajouter au panier</button>
                     </div>
-                    <img src="./assets/truck.png" class="truck">
-                    <span class="item-delivery">5.32€</span>
+                    <span class="date-word">Date : </span>
+                    <span class="item-date">4 décembre 2022</span>
 
                 </div>
             </article>
