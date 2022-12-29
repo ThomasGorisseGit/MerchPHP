@@ -81,7 +81,7 @@ session_start();
 
                     <h1 class="item-title">JBL - Flip 5 Noir</h1>
                     <div class="item-price-delivery">
-                        <span class="item-price">188888888888888.56€</span>
+                        <span class="item-price">1888777888.56€</span>
                         <img src="./assets/truck.png" class="truck">
                         <span class="item-delivery">500000.32€</span>
                     </div>
