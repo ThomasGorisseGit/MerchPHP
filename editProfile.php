@@ -24,7 +24,6 @@ if(isset($_POST["submit"]))
         if( !($user->validateUser($db)))
         {   
             $user->setEmail($data["email"]); // email déja prise
-            
         }
     }
     if(isset($_POST["password"]) && !empty($_POST["password"]))
@@ -35,6 +34,7 @@ if(isset($_POST["submit"]))
     if($user->changeUserInfo($data["id"],$db))
     {
         $user->startUserSession();
+        $user->rememberMe();
         header("Location: profile.php");
     }
 }
@@ -50,10 +50,12 @@ if(isset($_POST["submit"]))
 </head>
 <body>
     <form action="" method="POST">
+        <input type="file" name="pp" >    
         <input type="text" placeholder="Nom" name="name" >
         <input type="email" placeholder="Email" name="email">
         <input type="password" placeholder="Mot de passe" name="password" >
-        <input type="file" name="pp" >
+        <Label for="rememberMe">Se souvenir de moi</Label>
+        <input type="checkbox" name="rememberMe">
         <button name="submit" type="submit">Modifier votre profile</button>
     </form >
     <button onclick="location.href='index.php'">Retourner à l'accueil</button>

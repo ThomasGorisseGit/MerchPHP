@@ -1,6 +1,11 @@
 <?php
 session_start();
-
+require "./script/User.php";
+if(!isset($_SESSION["email"]) && isset($_COOKIE["email"],$_COOKIE["password"]) && !empty($_COOKIE["email"]) && !empty($_COOKIE["password"]))
+{
+    $user = new User($_COOKIE["name"],$_COOKIE["email"],$_COOKIE["password"]);
+    $user->startUserSession();
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +25,6 @@ session_start();
 <body>
     <header>
         <!-- Header de la page d'accueil -->
-        <h1>test</h1>
         <div class="main-title">
 
             <img class="logo" src="./assets/Logo.png" alt="Logo de l'entreprise">

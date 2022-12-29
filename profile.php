@@ -8,6 +8,10 @@ if(!isset($_SESSION["password"]) or empty($_SESSION["password"]))
 if(isset($_POST["disconnect"]))
 {
     session_destroy();
+    setcookie("name",null,time() - 3600);
+    setcookie("email",null,time() - 3600);
+    setcookie("password",null,time() - 3600);
+    setcookie("image",null,time() - 3600);
     header("Location:index.php");
 }
 ?>

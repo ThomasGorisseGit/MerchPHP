@@ -79,10 +79,10 @@ class User{
         $email = $this->email;
         $password = $this->password;
         $image = $this->image;
-        setcookie("name",$name,time() * 60 * 60);
-        setcookie("email",$email ,time() * 60 * 60);
-        setcookie("password",$password,time() * 60 * 60);
-        setcookie("password",$image,time() * 60 * 60);
+        setcookie("name",$name,time() + 365 * 24 * 3600);
+        setcookie("email",$email ,time() +365 * 24 * 3600);
+        setcookie("password",$password,time() + 365 * 24 * 3600);
+        setcookie("image",$image,time() + 365 * 24 * 3600);
     }
     function setName(string $name) 
     {
