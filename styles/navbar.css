@@ -14,6 +14,7 @@ a{
     text-decoration: none;
     color: grey;
 }
+
 h1#title{
     color: white;
     font-size: 1.2rem;
@@ -69,7 +70,7 @@ h1#title{
     background-color: #1D1F20;
     display: flex;
     justify-content: center;
-    background-image: url('./assets/topmarques.svg');
+    background-image: url("../assets/topmarques.svg");
     background-size: 100% 100%;
 }
 
