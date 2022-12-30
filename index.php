@@ -1,9 +1,8 @@
 <?php
 session_start();
 require "./script/User.php";
-if(!isset($_SESSION["email"]) && isset($_COOKIE["email"],$_COOKIE["password"]) && !empty($_COOKIE["email"]) && !empty($_COOKIE["password"]))
-{
-    $user = new User($_COOKIE["name"],$_COOKIE["email"],$_COOKIE["password"]);
+if (!isset($_SESSION["email"]) && isset($_COOKIE["email"], $_COOKIE["password"]) && !empty($_COOKIE["email"]) && !empty($_COOKIE["password"])) {
+    $user = new User($_COOKIE["name"], $_COOKIE["email"], $_COOKIE["password"]);
     $user->startUserSession();
 }
 ?>
@@ -26,22 +25,14 @@ if(!isset($_SESSION["email"]) && isset($_COOKIE["email"],$_COOKIE["password"]) &
     <header>
         <!-- Header de la page d'accueil -->
         <div class="main-title">
-
             <img class="logo" src="./assets/Logo.png" alt="Logo de l'entreprise">
             <h1 id="title">SeinkSansGroove</h1>
-
-            <a href="#">
-                Marques
-            </a>
-            <a href="#">
-                Panier
-            </a>
-
-            <form action="#">
+            <a href="#">Marques</a>
+            <a href="#">Panier</a>
+            <form action="#" class="form-search">
                 <input class="research-bar" type="text" placeholder=" Search Courses" name="search">
-                <button>
-                    <i class="" style="font-size: 18px;">
-                    </i>
+                <button id="search-logo">
+                    <img src="./assets/search-logo.png" alt="search" width="15px">
                 </button>
             </form>
             <div class="user">

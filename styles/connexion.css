@@ -1,0 +1,55 @@
+main {
+    font-family: 'Inter', sans-serif;
+}
+
+.connexion-main{
+    max-width: 650px;
+    margin: 0 auto;
+    background-color: #e7e7e7;
+    padding: 1%;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+.fieldset-form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: none;
+    padding: 2%;
+    margin: 0 auto;
+    width: 70%;
+}
+
+input{
+    border: black 1px solid;
+    border-radius: 4px;
+    padding: 2%;
+}
+
+h2{
+    margin: 0 auto;
+    padding-bottom: 15px;
+    text-align: center;
+    padding: 3% 0;
+}
+
+.remember{
+    display: flex;
+    width: 70%;
+    margin: 0 auto;
+    padding: 2%;
+}
+
+.button-connect-return{
+    width: 70%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    gap: 10px;
+    padding: 3% 0;
+}
+
+.research-bar{
+    height: 17px!important;
+}

@@ -62,7 +62,6 @@ h1.item-title {
 	color: black;
 	padding:10px 17px;
     margin-right: 0.5%;
-    margin-left: 0.5%;
 
 }
 
@@ -71,11 +70,10 @@ h1.item-title {
 	border-radius:4px;
 	border:1px solid #12b034;
 	cursor:pointer;
-    margin-right: 0.5%;
-    margin-left: 0.5%;
 	color:#ffffff;
 	padding:10px 17px;
 }
+
 
 /* date */
 .date-word{
