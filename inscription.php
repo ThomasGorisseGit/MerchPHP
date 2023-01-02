@@ -3,6 +3,9 @@ session_start();
 require "./script/connexionDatabase.php";
 require "./script/User.php";
 
+if (isset($_POST["submit"])) {
+    createUser($_POST["name"], $_POST["email"], $_POST["password"], $db);
+}
 function createUser(string $name, string $email, string $password, PDO $db): void
 {
     if (checkPassword($password)) {
@@ -49,29 +52,8 @@ function checkPassword(string $password): bool
 </head>
 
 <body>
-    <header>
-        <!-- Header de la page d'accueil -->
-        <div class="main-title">
-            <img class="logo" src="./assets/Logo.png" alt="Logo de l'entreprise">
-            <h1 id="title">SeinkSansGroove</h1>
-            <a href="#">Marques</a>
-            <a href="#">Panier</a>
-            <form action="#" class="form-search">
-                <input class="research-bar" type="text" placeholder=" Search Courses" name="search">
-                <button id="search-logo">
-                    <img src="./assets/search-logo.png" alt="search" width="15px">
-                </button>
-            </form>
-            <div class="user">
-                <?php require_once("./connectionView.php"); ?>
-            </div>
-        </div>
-        <nav class="brands-list">
-            <button>Marshall</button>
-            <button>JBL</button>
-            <button>Bose</button>
-        </nav>
-    </header>
+    <?php require_once("./Views/navbarView.php");?>
+
     <main>
         <section class="connexion-main">
             <h2>Inscription</h2>
@@ -82,7 +64,7 @@ function checkPassword(string $password): bool
                 </fieldset>
                 <fieldset class="fieldset-form">
                     <label for="adresse-email" class="label-field">Adresse mail</label>
-                    <input type="email" name="email" placeholder="jamesbond@gmail.com" required>
+                    <input type="email" name="email" placeholder="jamesratio@gmail.com" required>
                 </fieldset>
                 <fieldset class="fieldset-form">
                     <label for="mdp" class="label-field">Mot de passe</label>
@@ -93,7 +75,7 @@ function checkPassword(string $password): bool
                     <input type="checkbox" name="rememberMe">
                 </div>
                 <div class="button-connect-return">
-                    <button type="submit" class="item-button-green">S'inscrire</button>
+                    <button type="submit" name="submit" class="item-button-green">S'inscrire</button>
                     <button onclick="location.href='index.php'" class="item-button-grey">Retourner à l'accueil</button>
                 </div>
             </form>
@@ -103,8 +85,3 @@ function checkPassword(string $password): bool
 </body>
 
 </html>
-
-<?php
-if (isset($_POST["submit"])) {
-    createUser($_POST["name"], $_POST["email"], $_POST["password"], $db);
-}

@@ -31,39 +31,20 @@ if (isset($_POST["password"])) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <title>Page de connexion</title>
+    <link rel="icon" href="./assets/Logo.png">
+
 </head>
 
 <body>
-    <header>
-        <!-- Header de la page d'accueil -->
-        <div class="main-title">
-            <img class="logo" src="./assets/Logo.png" alt="Logo de l'entreprise">
-            <h1 id="title">SeinkSansGroove</h1>
-            <a href="#">Marques</a>
-            <a href="#">Panier</a>
-            <form action="#" class="form-search">
-                <input class="research-bar" type="text" placeholder=" Search Courses" name="search">
-                <button id="search-logo">
-                    <img src="./assets/search-logo.png" alt="search" width="15px">
-                </button>
-            </form>
-            <div class="user">
-                <?php require_once("./connectionView.php"); ?>
-            </div>
-        </div>
-        <nav class="brands-list">
-            <button>Marshall</button>
-            <button>JBL</button>
-            <button>Bose</button>
-        </nav>
-    </header>
+    <?php require_once("./Views/navbarView.php");?>
+
     <main>
         <section class="connexion-main">
             <h2>Connexion</h2>
             <form action="" method="POST">
                 <fieldset class="fieldset-form">
                     <label for="adresse-email" class="label-field">Adresse mail</label>
-                    <input type="email" name="email" placeholder="jamesbond@gmail.com" required>
+                    <input type="email" name="email" placeholder="jamesratio@gmail.com" required>
                 </fieldset>
                 <fieldset class="fieldset-form">
                     <label for="mdp" class="label-field">Mot de passe</label>
@@ -78,7 +59,9 @@ if (isset($_POST["password"])) {
                     <button onclick="location.href='index.php'" class="item-button-grey">Retourner à l'accueil</button>
                 </div>
             </form>
+            <a href="./forgetPassword.php">Mot de passe oublié</a>
         </section>
+
     </main>
 </body>
 

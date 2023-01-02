@@ -14,37 +14,15 @@ if (!isset($_SESSION["email"]) && isset($_COOKIE["email"], $_COOKIE["password"])
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/main.css">
-    <link rel="stylesheet" href="./styles/navbar.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="icon" href="./assets/Logo.png">
     <title>SeinkSansGroove</title>
+
 </head>
 
 <body>
-    <header>
-        <!-- Header de la page d'accueil -->
-        <div class="main-title">
-            <img class="logo" src="./assets/Logo.png" alt="Logo de l'entreprise">
-            <h1 id="title">SeinkSansGroove</h1>
-            <a href="#">Marques</a>
-            <a href="#">Panier</a>
-            <form action="#" class="form-search">
-                <input class="research-bar" type="text" placeholder=" Search Courses" name="search">
-                <button id="search-logo">
-                    <img src="./assets/search-logo.png" alt="search" width="15px">
-                </button>
-            </form>
-            <div class="user">
-                <?php require_once("./connectionView.php"); ?>
-            </div>
-        </div>
-        <nav class="brands-list">
-            <button>Marshall</button>
-            <button>JBL</button>
-            <button>Bose</button>
-        </nav>
-    </header>
+    <?php require_once("./Views/navbarView.php");?>
     <main>
         <!-- Contenu de la page d'accueil yo-->
         <section class="article-list">

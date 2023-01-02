@@ -24,9 +24,11 @@ if(isset($_POST["disconnect"]))
     <title>Profile de <?=$_SESSION["name"];?></title>
 </head>
 <body>
+    <?php require_once("./Views/navbarView.php");?>
+
     <main>
         <div class="content">
-            <Label>Photo de profile :</Label>
+            <Label>Photo de profil :</Label>
             <img src=<?=$_SESSION["image"]?> width="80px"alt="photo de profile">
             </br> <!-- a supprimer -->
             <Label>Nom :</Label>
@@ -36,7 +38,7 @@ if(isset($_POST["disconnect"]))
             <?= $_SESSION["email"];?>
         </div>
         <button onclick="location.href='index.php' ">Retour a l'accueil</button>
-        <button onclick="location.href='editProfile.php' ">Modifier le profile</button>
+        <button onclick="location.href='editProfile.php' ">Modifier le profil</button>
         <form method="post">
             <button type="submit" name="disconnect">Se deconnecter</button>
         </form>

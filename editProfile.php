@@ -49,6 +49,8 @@ if(isset($_POST["submit"]))
     <title>Modification du profile de <?= $_SESSION["name"];?></title>
 </head>
 <body>
+    <?php require_once("./Views/navbarView.php");?>
+
     <form action="" method="POST">
         <input type="file" name="pp" >    
         <input type="text" placeholder="Nom" name="name" >
@@ -56,7 +58,7 @@ if(isset($_POST["submit"]))
         <input type="password" placeholder="Mot de passe" name="password" >
         <Label for="rememberMe">Se souvenir de moi</Label>
         <input type="checkbox" name="rememberMe">
-        <button name="submit" type="submit">Modifier votre profile</button>
+        <button name="submit" type="submit">Modifier votre profil</button>
     </form >
     <button onclick="location.href='index.php'">Retourner à l'accueil</button>
 </body>
