@@ -39,10 +39,10 @@ if(isset($_POST["disconnect"]))
             
         </div>
         <div class="button_zone">
-            <button onclick="location.href='index.php' ">Retour a l'accueil</button>
-            <button onclick="location.href='editProfile.php' ">Modifier le profil</button>
+            <button class="edit" onclick="location.href='index.php' ">Retour a l'accueil</button>
+            <button class="edit" onclick="location.href='editProfile.php' ">Modifier le profil</button>
             <form method="post">
-                <button type="submit" name="disconnect">Se deconnecter</button>
+                <button class="edit" type="submit" name="disconnect">Se deconnecter</button>
             </form> 
         </div>
         

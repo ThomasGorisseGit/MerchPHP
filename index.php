@@ -20,8 +20,8 @@ if (!isset($_SESSION["email"]) && isset($_COOKIE["email"], $_COOKIE["password"])
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles/main.css">
     <link rel="icon" href="./assets/Logo.png">
+
     <title>SeinkSansGroove</title>
 
 </head>
@@ -30,9 +30,8 @@ if (!isset($_SESSION["email"]) && isset($_COOKIE["email"], $_COOKIE["password"])
     <?php require_once("./Views/navbarView.php");?>
     <main>
         <!-- Contenu de la page d'accueil yo-->
-        
-        <?php require_once("./Views/ArticleView.php");?>
-
+        <section>
+            <?php require_once("./Views/ArticleView.php");?>
         </section>
     </main>
     <footer>

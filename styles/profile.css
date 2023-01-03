@@ -23,6 +23,6 @@
     justify-content: center;
 }
 
-.button_zone>button, form>button{
+.button_zone>.edit, form>.edit{
     padding: 5px;
 }
