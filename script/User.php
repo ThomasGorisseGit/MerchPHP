@@ -46,12 +46,13 @@ class User{
     {
         if($this->validateUser($db))
         {
-            $query = 'INSERT INTO User(name,email,password) VALUES (?,?,?)';
+            $query = 'INSERT INTO User(name,email,password,profilePicture) VALUES (?,?,?,?)';
             $stmt = $db->prepare($query);
             $stmt->execute(array(
                 $this->name,
                 $this->email,
-                $this->password
+                $this->password,
+                $this->image
             ));
 
             return true;

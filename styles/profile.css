@@ -1,0 +1,28 @@
+.profile_zone{
+    max-width: 650px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    margin-top: 500px;
+    background-color: #e7e7e7;
+    padding: 1%;
+    border-radius: 4px;
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.button_zone{
+    margin: 0 auto;
+    max-width: 650px;
+    display: flex;
+    gap: 20px; 
+    align-items: center;
+    justify-content: center;
+}
+
+.button_zone>button, form>button{
+    padding: 5px;
+}

@@ -2,6 +2,11 @@
 <?php
 require "./script/connexionDatabase.php";
 require "./script/User.php";
+/*
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+*/
 if(!isset($_SESSION["password"]) or empty($_SESSION["password"]))
 {
     header("Location:index.php");
@@ -12,7 +17,6 @@ $stmt = $db->prepare($query);
 $stmt->execute(array($_SESSION["email"]));
 $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
- 
 $user = new User($data["name"],$data["email"],$data["password"],$data["profilePicture"]);
 
 if(isset($_POST["submit"]))
@@ -89,20 +93,43 @@ if(isset($_POST["submit"]))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modification du profile de <?= $_SESSION["name"];?></title>
     <link rel="icon" href="./assets/Logo.png">
-
+    <link rel="stylesheet" href="./styles/editProfile.css">
 </head>
 <body>
     <?php require_once("./Views/navbarView.php");?>
 
-    <form action="" method="POST" enctype="multipart/form-data">
-        <input type="file" name="pp" >    
-        <input type="text" placeholder="Nom" name="name" >
-        <input type="email" placeholder="Email" name="email">
-        <input type="password" placeholder="Mot de passe" name="password" >
-        <Label for="rememberMe">Se souvenir de moi</Label>
-        <input type="checkbox" name="rememberMe">
-        <button name="submit" type="submit">Modifier votre profil</button>
-    </form >
-    <button onclick="location.href='index.php'">Retourner à l'accueil</button>
+    <form action="" method="POST" enctype="multipart/form-data" class="profile_zone">
+
+        <div class="photos">
+            <div class="ancienne_photo">
+                <div>ancienne photo</div>
+                <img src=<?=$_SESSION["image"]?> width="80px"alt="photo de profil">
+            </div>
+
+            <div class="nouvelle_photo">
+                <div>nouvelle photo</div>
+            </div>
+        
+        </div>
+
+        
+        <input type="file" name="pp"></input>    
+        <label>Modifier votre nom d'utilisateur</label>
+        <input type="text" value= <?= $_SESSION["name"];?> name="name" >
+        <label>Modifier votre adresse mail</label>
+        <input type="email" value=<?= $_SESSION["email"];?> name="email">
+
+        <label>Modifier le mot de passe</label>
+
+        <input type="password" name="password" >
+        <label for="rememberMe">Se souvenir de moi <input id="remember" type="checkbox" name="rememberMe"></label>
+        
+        <button name="submit" type="submit">Sauvegarder les modifications</button>
+    </form>
+
+    <div class="buttons">
+        <button onclick="location.href='index.php'">Retourner à l'accueil</button>
+    </div>
+    
 </body>
 </html>

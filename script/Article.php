@@ -10,8 +10,9 @@ class Article{
     private string $date;
     private string $image;
 
-    function __construct(string $name, float $price, float $delivery,string $description,string $date,string $image)
+    function __construct(int $id,string $name, float $price, float $delivery,string $description,string $date,string $image)
     {
+        $this->id = $id;
         $this->name = $name;  
         $this->price = $price;  
         $this->delivery = $delivery;
@@ -19,39 +20,39 @@ class Article{
         $this->date = $date;
         $this->image = $image;
     }
-    function getArticle(PDO $db)
-    {
-        $q = "SELECT * FROM Article";
-    }
+
     function __toString() : string
     {
         return "article :" . $this->name. $this->price. $this->delivery.$this->description.$this->date;
     }
-    function displayArticle()
+    function displayArticle() : string
     {
-       ?>
-        <article class="article-item">
-            <div class="item-image">
-                <img width="200px" src="<?= $this->image; ?>" alt="image de l\'article <?= $this->id;?>">
-            </div>
-            <div class="item-content">
-                <h1 class="item-title"><?=$this->name;?></h1>
-                <div class="item-price-delivery">
-                    <span class="item-price"><?=$this->price;?>€</span>
-                    <img src="./assets/truck.png" class="truck">
-                    <span class="item-delivery"><?=$this->delivery;?></span>
-                </div>
-                <p class="item-description">
-                    <?= $this->description;?>
-            </p>
-                <div class="item-buttons">
-                    <button class="item-button-grey">Fiche produit</button>
-                    <button class="item-button-green">Ajouter au panier</button>
-                </div>
-                <span class="date-word">Date : </span>
-                <span class="item-date"><?=$this->date;?></span>
-            </div>
-        </article>
-    <?php
+         
+       
+        $html ='<article class="article-item">';
+        $html .='    <div class="item-image">';
+        $html .='        <img width="200px" src="'.$this->image.'" alt="image de l\'article '.$this->name.'">';
+        $html .='    </div>';
+        $html .='    <div class="item-content">';
+        $html .='        <h1 class="item-title">'.$this->name.'</h1>';
+        $html .='        <div class="item-price-delivery">';
+        $html .='            <span class="item-price">' . $this->price .'€</span>';
+        $html .='            <img src="./assets/truck.png" class="truck">';
+        $html .='            <span class="item-delivery">'.$this->delivery.'€</span>';
+        $html .='        </div>';
+        $html .='        <p class="item-description">';
+        $html .='            '.$this->description.'';
+        $html .='    </p>';
+        $html .='        <div class="item-buttons">';
+        $html .='            <button class="item-button-grey">Fiche produit</button>';
+        $html .='            <button class="item-button-green">Ajouter au panier</button>';
+        $html .='        </div>';
+        $html .='        <span class="date-word">Date : </span>';
+        $html .='        <span class="item-date">'.$this->date.'</span>';
+        $html .='    </div>';
+        $html .='</article>';
+    
+      
+        return $html; 
     }
 }

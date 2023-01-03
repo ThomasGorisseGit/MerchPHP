@@ -22,26 +22,32 @@ if(isset($_POST["disconnect"]))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile de <?=$_SESSION["name"];?></title>
+    <link rel="stylesheet" href="./styles/profile.css">
 </head>
 <body>
     <?php require_once("./Views/navbarView.php");?>
 
     <main>
-        <div class="content">
-            <Label>Photo de profil :</Label>
+        <div class="profile_zone">
+            
             <img src=<?=$_SESSION["image"]?> width="80px"alt="photo de profile">
             </br> <!-- a supprimer -->
-            <Label>Nom :</Label>
-            <?= $_SESSION["name"];?>
+            <Label>Nom : <?= $_SESSION["name"];?></Label>
+            
 </br> <!-- a supprimer -->
-            <Label>Email :</Label>
-            <?= $_SESSION["email"];?>
+            <Label>Email : <?= $_SESSION["email"];?></Label>
+            
         </div>
-        <button onclick="location.href='index.php' ">Retour a l'accueil</button>
-        <button onclick="location.href='editProfile.php' ">Modifier le profil</button>
-        <form method="post">
-            <button type="submit" name="disconnect">Se deconnecter</button>
-        </form>
+        <div class="button_zone">
+            <button onclick="location.href='index.php' ">Retour a l'accueil</button>
+            <button onclick="location.href='editProfile.php' ">Modifier le profil</button>
+            <form method="post">
+                <button type="submit" name="disconnect">Se deconnecter</button>
+            </form> 
+        </div>
+        
+
+        
     </main>
 </body>
 </html>

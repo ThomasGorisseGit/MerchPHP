@@ -9,7 +9,7 @@ if (isset($_POST["submit"])) {
 function createUser(string $name, string $email, string $password, PDO $db): void
 {
     if (checkPassword($password)) {
-        $user = new User(htmlspecialchars(trim($name)), htmlspecialchars(trim($email)), htmlspecialchars(trim($password)));
+        $user = new User(htmlspecialchars(trim($name)), htmlspecialchars(trim($email)), htmlspecialchars(trim($password)),"/assets/avatar/default.png");
         $user->hashPassword();
         if ($user->addUser($db)) {
 
