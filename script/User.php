@@ -7,12 +7,16 @@ class User{
     private string $password;
     private string $image;
 
-    function __construct(string $name, string $email, string $password)
+    function __construct(string $name, string $email, string $password,?string $image="/assets/avatar/default.png")
     {
-        $this->image = "/assets/profilePictures/default.png";
+        $this->image = $image;
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
+    }
+    function setImage(string $image)
+    {
+        $this->image = $image;
     }
     function getUserInfos(PDO $db)
     {
@@ -24,6 +28,7 @@ class User{
         {
             $this->password = $data["password"];
             $this->name = $data["name"];
+            $this->image = $data["profilePicture"];
             return true;
         }
         return false;
@@ -73,7 +78,7 @@ class User{
         $_SESSION["password"] = $this->password;
         $_SESSION["image"] = $this->image;
     }
-    function rememberMe()
+    function  rememberMe()
     {
         $name = $this->name;
         $email = $this->email;
@@ -109,7 +114,6 @@ class User{
         {
             return true;
         }
-        
         return false;
     }
 }

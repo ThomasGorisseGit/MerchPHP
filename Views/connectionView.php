@@ -19,7 +19,7 @@ session_start();
     ?>
         <h3><?= $_SESSION["name"]; ?> </h3>
         <a href="./profile.php">
-            <img width="80px" src="<?= $_SESSION['image'] ?>" alt="PP">
+            <img width="80px" src="<?=  $_SESSION["image"] ?>" alt="PP">
         </a>
 
     <?php

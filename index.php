@@ -1,8 +1,13 @@
 <?php
 session_start();
 require "./script/User.php";
+require "./script/Article.php";
 if (!isset($_SESSION["email"]) && isset($_COOKIE["email"], $_COOKIE["password"]) && !empty($_COOKIE["email"]) && !empty($_COOKIE["password"])) {
     $user = new User($_COOKIE["name"], $_COOKIE["email"], $_COOKIE["password"]);
+    if(isset($_COOKIE["image"]) && !empty($_COOKIE["image"]))
+    {
+        $user->setImage($_COOKIE["image"]);
+    }
     $user->startUserSession();
 }
 ?>
@@ -48,29 +53,12 @@ if (!isset($_SESSION["email"]) && isset($_COOKIE["email"], $_COOKIE["password"])
 
                 </div>
             </article>
-            <article class="article-item">
-                <div class="item-image">photo</div>
-                <div class="item-content">
-
-                    <h1 class="item-title">JBL - Flip 5 Noir</h1>
-                    <div class="item-price-delivery">
-                        <span class="item-price">17624.56€</span>
-                        <img src="./assets/truck.png" class="truck">
-                        <span class="item-delivery">500000.32€</span>
-                    </div>
-                    <p class="item-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lobortis, neque egestas elementum lobortis, tellus risus molestie nisi, vitae sagittis lectus diam vitae nulla. Integer nec lorem id elit euismod condimentum.
-                    </p>
-                    <div class="item-buttons">
-                        <button class="item-button-grey">Fiche produit</button>
-                        <button class="item-button-green">Ajouter au panier</button>
-                    </div>
-                    <span class="date-word">Date : </span>
-                    <span class="item-date">4 décembre 2022</span>
-
-                </div>
-            </article>
-
+            
+        <?php
+        $art1 = new Article("JBL XTREM",100.0,13.2,"Nouvelle JBL Ultrapuissante","13-02-2023","assets/Logo.png");
+        echo $art1;
+        echo $art1->displayArticle();
+        ?>
         </section>
     </main>
     <footer>

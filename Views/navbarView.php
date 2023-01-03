@@ -16,7 +16,7 @@
             <a href="#">Marques</a>
             <a href="#">Panier</a>
             <form action="#" class="form-search">
-                <input class="research-bar" type="text" placeholder=" Search Courses" name="search">
+                <input class="research-bar" type="text" placeholder="Chercher une enceinte" name="search">
                 <button id="search-logo">
                     <img src="./assets/search-logo.png" alt="search" width="15px">
                 </button>
