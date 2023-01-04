@@ -15,7 +15,7 @@
             <img onclick="location.href='index.php'" class="logo" src="./assets/Logo.png" alt="Logo de l'entreprise">
             <h1 onclick="location.href='index.php'" id="title">SeinkSansGroove</h1>
             <a href="#">Marques</a>
-            <a href="#">Panier</a>
+            <a href="panier.php">Panier</a>
             <form action="#" class="form-search">
                 <input class="research-bar" type="text" placeholder="Chercher une enceinte" name="search">
                 <button id="search-logo">

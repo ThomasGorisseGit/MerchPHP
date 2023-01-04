@@ -1,0 +1,18 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/Logo.png">
+    <title>Votre panier</title>
+</head>
+<body>
+    <h3>Vos articles :</h3>
+    <form method="POST" action="">
+        <button type = "submit">Payer</button>
+    </form> 
+    <a href="./index.php">Continuer vos achats</a>
+</body>
+</html>

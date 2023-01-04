@@ -26,3 +26,9 @@
 .button_zone>.edit, form>.edit{
     padding: 5px;
 }
+
+.photos{
+    display: flex;
+    gap: 40px;
+
+}

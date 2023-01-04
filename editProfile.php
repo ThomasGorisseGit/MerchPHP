@@ -99,21 +99,26 @@ if(isset($_POST["submit"]))
     <?php require_once("./Views/navbarView.php");?>
 
     <form action="" method="POST" enctype="multipart/form-data" class="profile_zone">
-
+    <Label for="pp" name ="pp">
         <div class="photos">
             <div class="ancienne_photo">
                 <div>ancienne photo</div>
-                <img src=<?=$_SESSION["image"]?> width="80px"alt="photo de profil">
+                <Label for="pp" >
+                    <img src=<?=$_SESSION["image"]?> width="80px"alt="photo de profil">
+                </Label>
             </div>
 
             <div class="nouvelle_photo">
                 <div>nouvelle photo</div>
+                <img src=<?=$_SESSION["image"]?> width="80px" id="newpic" alt="">
             </div>
         
         </div>
 
         
-        <input type="file" name="pp"></input>    
+        
+        </Label>
+        <input type="file" id="pp" name="pp" onchange="loadFile(event)"></input> 
         <label>Modifier votre nom d'utilisateur</label>
         <input type="text" value= <?= $_SESSION["name"];?> name="name" >
         <label>Modifier votre adresse mail</label>
@@ -130,6 +135,12 @@ if(isset($_POST["submit"]))
     <div class="buttons">
         <button onclick="location.href='index.php'">Retourner à l'accueil</button>
     </div>
-    
+    <script>
+        var loadFile = function(event)
+        {
+            var image = document.getElementById("newpic");
+            image.src = URL.createObjectURL(event.target.files[0]);
+        }
+    </script>
 </body>
 </html>

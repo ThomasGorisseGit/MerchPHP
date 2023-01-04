@@ -36,6 +36,10 @@ class Article{
     {
         return $this->delivery;
     }
+    function getID() : int
+    {
+        return $this->id;
+    }
     function displayArticle() : string
     {
          
@@ -54,10 +58,12 @@ class Article{
         $html .='        <p class="item-description">';
         $html .='            '.$this->description.'';
         $html .='    </p>';
-        $html .='        <div class="item-buttons">';
-        $html .='            <button class="item-button-grey">Fiche produit</button>';
-        $html .='            <button class="item-button-green">Ajouter au panier</button>';
-        $html .='        </div>';
+        $html .= '       <form action="panierController.php" method="POST">';
+        $html .='           <div class="item-buttons">';                  
+        $html .='               <button class="item-button-grey">Fiche produit</button>';
+        $html .='               <button name="ajouterPanier" value = "'.$this->name.'"class="item-button-green" >Ajouter au panier</button>';
+        $html .='           </div>';
+        $html .='        </form>';
         $html .='        <span class="date-word">Date : </span>';
         $html .='        <span class="item-date">'.$this->date.'</span>';
         $html .='    </div>';

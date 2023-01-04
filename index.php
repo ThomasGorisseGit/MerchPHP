@@ -2,6 +2,7 @@
 session_start();
 require "./script/User.php";
 require "./script/Article.php";
+
 if (!isset($_SESSION["email"]) && isset($_COOKIE["email"], $_COOKIE["password"]) && !empty($_COOKIE["email"]) && !empty($_COOKIE["password"])) {
     $user = new User($_COOKIE["name"], $_COOKIE["email"], $_COOKIE["password"]);
     if(isset($_COOKIE["image"]) && !empty($_COOKIE["image"]))
@@ -10,6 +11,8 @@ if (!isset($_SESSION["email"]) && isset($_COOKIE["email"], $_COOKIE["password"])
     }
     $user->startUserSession();
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +30,7 @@ if (!isset($_SESSION["email"]) && isset($_COOKIE["email"], $_COOKIE["password"])
 </head>
 
 <body>
+    
     <?php require_once("./Views/navbarView.php");?>
     <main>
         <!-- Contenu de la page d'accueil yo-->
