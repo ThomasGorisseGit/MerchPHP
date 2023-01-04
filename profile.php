@@ -30,7 +30,7 @@ if(isset($_POST["disconnect"]))
     <main>
         <div class="profile_zone">
             
-            <img src=<?=$_SESSION["image"]?> width="80px"alt="photo de profile">
+            <img src=<?=$_SESSION["image"]?> width="80px"alt="photo de profile" id="previous">
             </br> <!-- a supprimer -->
             <Label>Nom : <?= $_SESSION["name"];?></Label>
             

@@ -40,6 +40,14 @@ class Article{
     {
         return $this->id;
     }
+    function getImage() : string
+    {
+        return $this->image;
+    }
+    function getDescription() : string
+    {
+        return $this->description;
+    }
     function displayArticle() : string
     {
          
@@ -58,7 +66,7 @@ class Article{
         $html .='        <p class="item-description">';
         $html .='            '.$this->description.'';
         $html .='    </p>';
-        $html .= '       <form action="panierController.php" method="POST">';
+        $html .= '       <form action="script/panierController.php" method="POST">';
         $html .='           <div class="item-buttons">';                  
         $html .='               <button class="item-button-grey">Fiche produit</button>';
         $html .='               <button name="ajouterPanier" value = "'.$this->name.'"class="item-button-green" >Ajouter au panier</button>';
@@ -68,8 +76,7 @@ class Article{
         $html .='        <span class="item-date">'.$this->date.'</span>';
         $html .='    </div>';
         $html .='</article>';
-    
-      
+
         return $html; 
     }
 }

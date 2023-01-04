@@ -1,11 +1,12 @@
 <?php
 session_start();
-require "./script/Panier.php";
-require "./script/connexionDatabase.php";
-require "./script/Article.php";
+require "Panier.php";
+require "connexionDatabase.php";
+require "Article.php";
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+echo"a";
 if(isset($_SESSION["email"])&& !empty($_SESSION["email"]))
 {
     $panier = new Panier();
@@ -26,10 +27,9 @@ if(isset($_SESSION["email"])&& !empty($_SESSION["email"]))
             $dataPanier["imageProduit"]
         );
         addArticleInPanier($userID,$panier,$article,$db);
+        
     }
-
-
-    
+    header("Location:../index.php");
 }
 else
 {
@@ -68,3 +68,4 @@ function addArticleInPanier(int $userID,Panier $panier,Article $article, PDO $db
         echo " une erreure est survenue";
     }
 }
+?>

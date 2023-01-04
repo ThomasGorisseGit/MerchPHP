@@ -24,7 +24,7 @@ if (!isset($_SESSION["email"]) && isset($_COOKIE["email"], $_COOKIE["password"])
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <link rel="icon" href="./assets/Logo.png">
-
+    <link rel="stylesheet" href="./styles/main.css">
     <title>SeinkSansGroove</title>
 
 </head>

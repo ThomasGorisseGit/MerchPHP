@@ -5,10 +5,10 @@ error_reporting(E_ALL);
 class Panier{
     private array $articles;
     private array $articleList;
-    function __construct(?array $articles = array())
+    function __construct(?array $articles = array(),?array $articleList = array())
     {
         $this->articles = $articles;
-        $this->articleList = array();
+        $this->articleList = $articleList;
     }
 
     function addArticle(Article $article) : void
