@@ -20,10 +20,21 @@ class Article{
         $this->date = $date;
         $this->image = $image;
     }
-
+    function getName() : string
+    {
+        return $this->name;
+    }
     function __toString() : string
     {
         return "article :" . $this->name. $this->price. $this->delivery.$this->description.$this->date;
+    }
+    function getPrice() : float
+    {
+        return $this->price;
+    }
+    function getDelivery() : float
+    {
+        return $this->delivery;
     }
     function displayArticle() : string
     {
