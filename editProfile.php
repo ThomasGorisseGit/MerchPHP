@@ -98,6 +98,8 @@ if (isset($_POST["submit"])) {
                         <img src=<?= $_SESSION["image"] ?> width="80px" id="newpic" alt="">
                     </div>
                 </div>
+                <div id="image_format_error">Format d'image non supporté</div>
+
             </label>
             <input type="file" id="pp" name="pp" onchange="loadFile(event)"></input>
             <label>Modifier votre nom d'utilisateur</label>
@@ -121,17 +123,33 @@ if (isset($_POST["submit"])) {
 
     <script>
         var loadFile = function(event) {
+
+            let input = document.getElementById("pp");
+
+            // faire attention au type du fichier
+            const supported_types = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
+
+            let image_type = input.files[0].type;
+            console.log(image_type);
+            // console.log("inclusion " + supported_types.includes(image_type) + " type " + typeof(image_type));
+            if (!supported_types.includes(image_type)) {
+                console.log("le format de l'image n'est pas supporté");
+                let error_message = document.getElementById("image_format_error");
+                error_message.style.opacity = 1;
+                return;
+            }
+            
             let image = document.getElementById("newpic");
             let maskeddiv = document.getElementById("newpicdiv");
             
             let oldtext = document.getElementById("oldtext");
-            let photoContener = document.getElementsByClassName("photos");
+            let photoContener = document.getElementsByClassName("photos")[0];
 
             image.src = URL.createObjectURL(event.target.files[0]);
             maskeddiv.style.display = "flex";
-            oldtext.innerText = "test";
-            photoContener.style
-            
+            oldtext.innerText = "ancienne photo";
+            oldtext.style.opacity = 1;
+            photoContener.classList.add("gapped");
         }
     </script>
 </body>

@@ -36,8 +36,10 @@ function displayAllArt(array $data)
     <title>Document</title>
 </head>
 <body>
-    <?php
-    displayAllArt($data);
-    ?>
+    <main id="article_zone">
+       <?php
+        displayAllArt($data);
+        ?> 
+    </main>
 </body>
 </html>

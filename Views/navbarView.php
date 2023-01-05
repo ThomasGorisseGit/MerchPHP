@@ -14,12 +14,12 @@
         <div class="main-title" >
             <img onclick="location.href='index.php'" class="logo" src="./assets/Logo.png" alt="Logo de l'entreprise">
             <h1 onclick="location.href='index.php'" id="title">SeinkSansGroove</h1>
-            <a href="#">Marques</a>
-            <a href="panier.php">Panier</a>
+            <a class="page_link" href="#">Marques</a>
+            <a class="page_link" href="panier.php">Panier</a>
             <form action="#" class="form-search">
-                <input class="research-bar" type="text" placeholder="Chercher une enceinte" name="search">
-                <button id="search-logo">
-                    <img src="./assets/search-logo.png" alt="search" width="15px">
+                <input class="research-bar" type="text" placeholder="Chercher une enceinte" name="search" id="navbar_searchbar">
+                <button id="search_button">
+                    <img src="./assets/search-logo.png" alt="search" width="15px" >
                 </button>
             </form>
             <div class="user">

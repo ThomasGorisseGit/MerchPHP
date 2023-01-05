@@ -33,11 +33,16 @@ a{
     height: 50px;
 }
 
+.logo:hover{
+    cursor: pointer;
+}
+
 h1#title{
     color: white;
     font-size: 1.2rem;
     font-style: oblique;
     user-select: none;
+    cursor: pointer;
 }
 
 /* Barre de recherche et bouton */
@@ -49,12 +54,12 @@ h1#title{
 
 .research-bar{
     width:300px;
-    height: 28px;
+    height: 30px;
     border-radius:4px;
     border: none;
 }
 
-#search-logo{
+#search_button{
     width: fit-content;
     height: 28px;
     border: white 1px solid;
@@ -62,6 +67,11 @@ h1#title{
     background-color: white;
     padding-top: 7px;
     padding-bottom: 21px;
+    width: 25px;
+}
+
+#search_button:hover{
+    cursor: pointer;
 }
 
 /* Boutons connexion et inscription */
@@ -85,6 +95,16 @@ h1#title{
     background-size: 100% 100%;
 }
 
+.brands-list>button:hover{
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
+.brands-list>button {
+    transition: 0.2s;
+}
+
+
 .brands-list button {
     margin: 24px 10px;
     padding: 8px 30px;
@@ -94,3 +114,21 @@ h1#title{
     color: white;
     cursor:pointer;
 }
+
+#navbar_searchbar {
+    padding-left: 10px;
+}
+
+
+.page_link:hover {
+    color: white;
+    transition: 0.2s;
+}
+
+
+.page_link {
+    transition: 0.2s;
+}
+
+
+
