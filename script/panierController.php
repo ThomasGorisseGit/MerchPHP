@@ -6,48 +6,31 @@ require "Article.php";
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-echo"a";
 if(isset($_SESSION["email"])&& !empty($_SESSION["email"]))
 {
     $panier = new Panier();
+    $data = $panier->getUserPanier(getUserID($db),$db);
+    print_r($data);
+    for($i=0;$i<sizeof($data);$i++)
+    {
+        
+        $panier->fillPanierOfArticle($data[$i]["idArticle"],$db);
+    }
     if(isset($_POST["ajouterPanier"]))
     {
-        $dataPanier = getArticleFromDatabase(htmlspecialchars(trim($_POST["ajouterPanier"])),$db);
-        if(!$dataPanier){
-            die("Cet Article n'existe plus");
-        }
-        $userID = getUserID($db);
-        $article = new Article(
-            $dataPanier["id"],
-            $dataPanier["nom"],
-            $dataPanier["prix"],
-            $dataPanier["prixLivraison"],
-            $dataPanier["description"],
-            $dataPanier["dateVente"],
-            $dataPanier["imageProduit"]
-        );
-        addArticleInPanier($userID,$panier,$article,$db);
+        $article = selectArticleByName($_POST["ajouterPanier"],$db);
+        addArticle($article,getUserID($db), $panier,$db);
         
     }
-    header("Location:../index.php");
+    header('Location: ../index.php');
 }
 else
 {
     echo "Veuillez vous connecter. </br>";
-    echo '<a href="./index.php">Retourner vers l\'accueil</a>';
+    echo '<a href="../index.php">Retourner vers l\'accueil</a>';
 }
-function getArticleFromDatabase(string $name, PDO $db) : array
-{
-    $q = "SELECT * FROM Article WHERE nom = ?";
-    $stmt = $db->prepare($q);
-    if($stmt->execute(array($name)))
-    {
-        $data = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $data;
-    }
-    return false;
 
-}    
+
 function getUserID(PDO $db)
 {
     $q = "SELECT id FROM User WHERE email = ?";
@@ -56,16 +39,41 @@ function getUserID(PDO $db)
     $id = $stmt->fetch();
     return $id["id"];
 }
-function addArticleInPanier(int $userID,Panier $panier,Article $article, PDO $db)
+function selectArticleByName(string $name, PDO $db)
 {
-    $q = "INSERT INTO Panier(idArticle,idUser) VALUES (?,?)";
+    $q = "SELECT * FROM Article WHERE nom = ?";
     $stmt = $db->prepare($q);
-    if($stmt->execute(array($article->getID(),$userID)))
+    $stmt->execute(array($name));
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);    
+    return new Article(
+        $data["id"],
+        $data["nom"],
+        $data["prix"],
+        $data["prixLivraison"],
+        $data["description"],
+        $data["dateVente"],
+        $data["imageProduit"]
+    );
+    
+}
+function addArticle(Article $article,int $userID, Panier $panier, PDO $db)
+{
+    $qte = $panier->getNumberOfArticle($article,$db,$userID);
+    echo "</br>" . $qte . "</br>";
+    if($qte > 0)
     {
-        $panier->addArticle($article);
+        $q = "UPDATE Panier SET quantity = ? WHERE idUser = ? AND idArticle = ? ";
+        $stmt = $db->prepare($q);
+        $stmt->execute(array($qte+1,$userID,$article->getID()));
+        echo "done1";
+
     }
     else{
-        echo " une erreure est survenue";
+        $q = "INSERT INTO Panier(idUser,idArticle,quantity)VALUES(?,?,?)";
+        $stmt = $db->prepare($q);
+        $stmt->execute(array($userID,$article->getID(),1));
+        echo "done2";
     }
+    $panier->addArticle($article);
 }
 ?>

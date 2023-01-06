@@ -87,7 +87,7 @@ if (isset($_POST["submit"])) {
             <label for="pp" name="pp">
                 <div class="photos">
                     <div class="ancienne_photo">
-                        <div id= "oldtext" >Cliquer pour modifier votre photo de profil</div>
+                        <div id="oldtext">Cliquer pour modifier votre photo de profil</div>
                         <label for="pp" id="labelImport">
                             <img src=<?= $_SESSION["image"] ?> width="80px" alt="photo de profil" id="oldpic">
                         </label>
@@ -105,18 +105,18 @@ if (isset($_POST["submit"])) {
             <label>Modifier votre nom d'utilisateur</label>
             <input type="text" value=<?= $_SESSION["name"]; ?> name="name">
             <label>Modifier votre adresse mail</label>
-            <input type="email" value=<?= $_SESSION["email"]; ?> name="email">
+            <input type="email" name="email">
 
             <label>Modifier le mot de passe</label>
 
             <input type="password" name="password">
             <label for="rememberMe">Se souvenir de moi <input id="remember" type="checkbox" name="rememberMe"></label>
 
-            <button name="submit" type="submit">Sauvegarder les modifications</button>
+            <button name="submit" type="submit" id="save_changes_button">Sauvegarder les modifications</button>
         </form>
 
         <div class="buttons">
-            <button onclick="location.href='index.php'">Retourner à l'accueil</button>
+            <button id="home_button" onclick="location.href='index.php'">Retourner à l'accueil</button>
         </div>
         </div>
     </main>
@@ -138,10 +138,10 @@ if (isset($_POST["submit"])) {
                 error_message.style.opacity = 1;
                 return;
             }
-            
+
             let image = document.getElementById("newpic");
             let maskeddiv = document.getElementById("newpicdiv");
-            
+
             let oldtext = document.getElementById("oldtext");
             let photoContener = document.getElementsByClassName("photos")[0];
 

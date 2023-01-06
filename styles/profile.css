@@ -32,3 +32,9 @@
     gap: 40px;
 
 }
+
+
+.button_zone button:hover{
+    cursor: pointer;
+}
+

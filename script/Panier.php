@@ -4,70 +4,35 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 class Panier{
     private array $articles;
-    private array $articleList;
-    function __construct(?array $articles = array(),?array $articleList = array())
+    
+    function __construct(?array $articles = array())
     {
         $this->articles = $articles;
-        $this->articleList = $articleList;
     }
 
     function addArticle(Article $article) : void
     {
-    
-        if(isset($this->articles[$article->getName()]))
-        {
-            $this->articles[$article->getName()]+=1;
-        }
-        else{
-            $this->articles[$article->getName()]=1;
-        }
-        array_push($this->articleList,$article);
-       
+        array_push($this->articles,$article);
     }
     function removeArticle(Article $article) : void
     {
-        unset($this->articles[$article->getName()]);
-        $i=0;
-        foreach($this->articleList as $articleL)
+        foreach($this->articles as $art)
         {
-            
-            if($articleL->getName()==$article->getName())
+            if($art->getName()== $article->getName())
             {
-                unset($this->articleList[$i]);
-            }
-            $i++;
-        }
-        $this->articleList = array_values($this->articleList);
-
-    }
-    function deleteQTEArticle(Article $article) : void
-    {
-        if(isset($this->articles[$article->getName()]) && $this->articles[$article->getName()]>1)
-        {
-            $this->articles[$article->getName()]-=1;
-        }
-        else{
-            $this->removeArticle($article);
-        }
-        for($i=0;$i<count($this->articleList);$i++)
-        {
-            if(isset($this->articleList[$i]) && $this->articleList[$i]->getName()==$article->getName())
-            {
-                
-                array_splice($this->articleList,$i,1);
+                array_splice($this->articles,array_search($art,$this->articles),1);
                 return;
             }
         }
     }
-    function getArticleList() : array
+    function getPanier() : array
     {
-        return $this->articleList;
+        return $this->articles;
     }
-    
     function totalPrice() : float
     {
         $total = 0;
-        foreach($this->articleList as $article)
+        foreach($this->articles as $article)
         {
             $total += $article->getPrice();
         }
@@ -76,7 +41,7 @@ class Panier{
     function totalDelivery() : float
     {
         $total = 0;
-        foreach($this->articleList as $article)
+        foreach($this->articles as $article)
         {
             $total += $article->getDelivery();
         }
@@ -93,12 +58,49 @@ class Panier{
         $res =" </br> ";
         foreach($this->articles as $article)
         {
-            $res .=$article ."</br>"; 
+            $res .=$article->getName() ."</br>"; 
         }
         return $res;
     }
-    function getPanier() : array
+    function getNumberOfArticle(Article $article,$db, int $userID) : int
     {
-        return $this->articles;
+        echo $article->getID();
+        $q="SELECT * FROM Panier WHERE idArticle = ? AND idUser = ?";
+        $stmt = $db->prepare($q);   
+        $stmt->execute(array($article->getID(),$userID));  
+        $total = $stmt->fetch(PDO::FETCH_ASSOC);
+        if(!empty($total["quantity"]))
+        {
+            return $total["quantity"];
+        }
+        return 0;
+    }
+    function getUserPanier(int $userID,PDO $db) : array
+    {
+        $q = "SELECT * FROM Panier WHERE idUser = ?";
+        $stmt = $db->prepare($q);
+        $stmt->execute(array($userID));
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $data;
+    }
+    function fillPanierOfArticle(int $articleID,PDO $db)
+    {
+        $q = "SELECT * FROM Article WHERE id = ?";
+        $stmt = $db->prepare($q);
+        $stmt->execute(array($articleID));
+        $articleList = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach($articleList as $tempart)
+        {
+            $article = new Article(
+                $tempart["id"],
+                $tempart["nom"],
+                $tempart["prix"],
+                $tempart["prixLivraison"],
+                $tempart["description"],
+                $tempart["dateVente"],
+                $tempart["imageProduit"]
+            );
+            $this->addArticle($article);
+        }
     }
 }

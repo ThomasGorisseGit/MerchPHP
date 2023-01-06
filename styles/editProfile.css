@@ -110,3 +110,10 @@ button{
     color: rgb(224, 32, 32);
     font-style: italic;
 }
+
+#home_button, #save_changes_button {
+    cursor: pointer;
+}
+
+
+
