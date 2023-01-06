@@ -29,14 +29,9 @@ class Panier{
     {
         return $this->articles;
     }
-    function totalPrice() : float
+    function totalPrice(array $articles) : void
     {
-        $total = 0;
-        foreach($this->articles as $article)
-        {
-            $total += $article->getPrice();
-        }
-        return $total;
+        print_r($articles);
     }
     function totalDelivery() : float
     {
@@ -49,7 +44,7 @@ class Panier{
     }
     function getTotal() : float
     {
-        return $this->totalDelivery() + $this->totalPrice();
+        return $this->totalDelivery() ;
     }
 
     function __toString()
@@ -64,7 +59,6 @@ class Panier{
     }
     function getNumberOfArticle(Article $article,$db, int $userID) : int
     {
-        echo $article->getID();
         $q="SELECT * FROM Panier WHERE idArticle = ? AND idUser = ?";
         $stmt = $db->prepare($q);   
         $stmt->execute(array($article->getID(),$userID));  
@@ -102,5 +96,56 @@ class Panier{
             );
             $this->addArticle($article);
         }
+    }
+    function displayPanier(PDO $db,int $userID) : string
+    {
+        $html='';
+        foreach($this->articles as $article)
+        {
+            $html .= $article->articleInPanier(); 
+            $html.='<form action="" method="post">';
+            $html.='    <section class="qte">';
+
+            $html.='        <div class="qte-item">';
+            $html.='            <button type="submit" name="plus" value="'.$article->getName().'">+</button>';
+            $html.='        </div>';
+
+            $html.='        <div class="qte-item">';
+            $html.='            <p class="quantite">'.$this->getNumberOfArticle($article,$db,$userID).'</p>';
+            $html.='        </div>';
+
+            $html.='        <div class="qte-item">';
+            $html.='            <button type="submit" name="minus" value="'.$article->getName().'">-</button>';
+            $html.='        </div>';
+
+            $html.='    </section>';
+            $html.='</form>';
+            $html.='<form action="" method="post">';
+            $html.='<button type="submit" name="delete" value="'.$article->getName().'">supprimer</button>';
+            $html.='</form>';
+            $html.='</article>';
+            
+        }
+        return $html;
+    }
+    function displayTotalPrice(float $total) : string
+    {
+        
+        $html = '';
+        
+        $html.='<section>';
+        $html.='    <div>';
+        $html.='        <p class="prix">prix des articles '.$total .' </p> ';
+        $html.='        <p class="livraison">prix de la livraison '.$this->totalDelivery().'</p>   ';
+        $html.='        <p class="total">TTC : '.$total + $this->totalDelivery().'</p>           ';
+        $html.='    </div>';
+        $html.='    <form method="post" action="./paiement.php">';
+        $html.='        <button type="submit" value="paiement" name="paiement">Passer au règlement</button>';
+        $html.='    </form>';
+        $html.='</section>';
+    
+        return $html;
+        
+        
     }
 }

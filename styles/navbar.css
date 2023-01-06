@@ -2,21 +2,23 @@
     font-family: 'Inter', sans-serif;
 }
 
-ul{
+ul {
     margin: 0;
     padding: 0;
 }
-li{
+
+li {
     list-style: none;
 
 }
-a{
+
+a {
     text-decoration: none;
     color: #BFC3C8;
 }
 
 /* Header */
-.main-title{
+.main-title {
     background-color: #35373B;
     display: flex;
     width: 100%;
@@ -28,16 +30,16 @@ a{
 }
 
 /* Logo et titre SeinkSansGroove */
-.logo{
+.logo {
     width: 50px;
     height: 50px;
 }
 
-.logo:hover{
+.logo:hover {
     cursor: pointer;
 }
 
-h1#title{
+h1#title {
     color: white;
     font-size: 1.2rem;
     font-style: oblique;
@@ -46,20 +48,20 @@ h1#title{
 }
 
 /* Barre de recherche et bouton */
-.form-search{
+.form-search {
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
-.research-bar{
-    width:300px;
+.research-bar {
+    width: 300px;
     height: 30px;
-    border-radius:4px;
+    border-radius: 4px;
     border: none;
 }
 
-#search_button{
+#search_button {
     width: fit-content;
     height: 28px;
     border: white 1px solid;
@@ -70,19 +72,19 @@ h1#title{
     width: 25px;
 }
 
-#search_button:hover{
+#search_button:hover {
     cursor: pointer;
 }
 
 /* Boutons connexion et inscription */
-.user{
+.user {
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
-#greener{
-    background-color:#11882b;
+#greener {
+    background-color: #11882b;
     border-color: #11882b;
 }
 
@@ -95,7 +97,7 @@ h1#title{
     background-size: 100% 100%;
 }
 
-.brands-list>button:hover{
+.brands-list>button:hover {
     transform: scale(1.05);
     transition: 0.3s;
 }
@@ -112,7 +114,7 @@ h1#title{
     border: #35373B 1px solid;
     border-radius: 5px;
     color: white;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 #navbar_searchbar {
@@ -130,5 +132,60 @@ h1#title{
     transition: 0.2s;
 }
 
+.label-hamburger,
+#toggle {
+    display: none;
+}
 
 
+/* media queries */
+@media screen and (max-width:900px) {
+    .research-bar {
+        width: 150px;
+    }
+}
+
+@media screen and (max-width:740px) {
+ 
+    
+    #nav
+    {
+        height: 60px;
+        background-color: #1D1F20;
+    }
+ 
+    #nav .main-title 
+    {
+        display: none;
+        flex-direction: column;
+        background: #48435C;
+        height: 220px;
+    }
+ 
+    #nav .main_title a {
+        width: 50%;
+    }
+ 
+ 
+    .label-hamburger 
+    {
+        width: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        font-size: 40px;
+        color: white;
+        cursor: pointer;
+    }
+
+    #toggle:checked + .main-title{
+        display: flex;
+        position: relative;
+        z-index: 1;
+        margin: auto;
+        background-color: #1D1F20;
+        height: fit-content;
+    }
+
+}

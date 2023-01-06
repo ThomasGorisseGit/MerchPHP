@@ -50,8 +50,10 @@ class Article{
     }
     function displayArticle() : string
     {
-         
-       
+        /**
+         * Display dans index.php
+         */
+    
         $html ='<article class="article-item">';
         $html .='    <div class="item-image">';
         $html .='        <img width="200px" src="'.$this->image.'" alt="image de l\'article '.$this->name.'">';
@@ -76,7 +78,33 @@ class Article{
         $html .='        <span class="item-date">'.$this->date.'</span>';
         $html .='    </div>';
         $html .='</article>';
-
-        return $html; 
+        return $html;
+            
+    }
+    function articleInPanier()
+    {
+         /**
+         * Display dans panier.php
+         */
+        $html = "";
+        $html .='<article>';
+        $html .='    <section class="description">';
+        $html .='        <div class="image">';
+        $html .='            <img src="'.$this->image.'" alt="'.$this->name.'">';
+        $html .='        </div>';
+        $html .='        <div class="content">';
+        $html .='            <h3 class="name">'.$this->name;
+        $html .='            </h3>';
+        $html .='            <p class="description">'.$this->description;
+        $html .='            </p>';
+        $html .='        </div>';
+        $html .='    </section>';
+        $html .='    <section class = "diverses_prices">';
+        $html .='        <div class="prix">'.$this->price;
+        $html .='        </div>';
+        $html .='        <div class="livraison">'.$this->delivery;
+        $html .='        </div>';
+        $html .='    </section>';
+        return $html;
     }
 }
