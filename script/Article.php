@@ -100,10 +100,12 @@ class Article{
         $html .='        </div>';
         $html .='    </section>';
         $html .='    <section class = "diverses_prices">';
-        $html .='        <div class="prix">'.$this->price;
-        $html .='        </div>';
-        $html .='        <div class="livraison">'.$this->delivery;
-        $html .='        </div>';
+        $html .='        <div class="prix"><img width="30px" src = "./assets/caddie.png" alt=""/>'.$this->price;
+        $html .='€        </div>';
+        $html .='        <div class="livraison">';
+        $html .=' <img width="30px" src = "./assets/truck.png" alt=""/>';
+        $html .=' '.$this->delivery.'€';
+        $html .='       </div>';
         $html .='    </section>';
         return $html;
     }

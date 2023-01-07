@@ -1,3 +1,7 @@
+*{
+    font-family: 'Inter', sans-serif;
+}
+
 main {
     width: 70%;
     margin: 0 auto;
@@ -29,7 +33,8 @@ article{
 
 article>.description {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    width: 800px;
 }
 
 
@@ -70,3 +75,46 @@ article>.description {
     width: 50%;
 }
 
+
+
+
+/* TEST */
+
+
+article button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    border: 0px solid transparent;
+    background-color: rgba(100,77,237,0.08);
+    border-radius: 38%;
+    transition: all 0.2s linear;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+#delete {
+    position: relative;
+    left: 5px;
+    background-color: #ff00004d;
+}
+
+#delete:hover {
+    background-color: #ff000091;
+}
+
+.qte>button{
+    font-size: 15px;
+}
+
+.qte>button:hover {
+    background-color: #9bc1e3;
+}
+
+.diverses_prices {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}

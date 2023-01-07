@@ -6,6 +6,7 @@ require "script/connexionDatabase.php";
 
 if(isset($_SESSION["email"]) && !empty($_SESSION["email"]))
 {
+    
     $panier = new Panier();
     $data = $panier->getUserPanier(getUserID($db),$db);
     for($i=0;$i<sizeof($data);$i++)
@@ -17,31 +18,11 @@ if(isset($_SESSION["email"]) && !empty($_SESSION["email"]))
         echo "votre panier est vide </br>";
         echo '<a href="./index.php">Retour vers l\'accueil</a>';
     }
-    if(isset($_POST["minus"]) && !empty($_POST["minus"]))
-    {
-        $name = htmlentities(trim($_POST["minus"]));
-        $article = selectArticleByName($name,$db);
-        $qte = $panier->getNumberOfArticle($article,$db,getUserID($db));
-        if($qte>1)
-        {
-            $q = "UPDATE Panier SET quantity = ? WHERE idUser = ? AND idArticle = ? ";
-            $stmt = $db->prepare($q);
-            $stmt->execute(array($qte-1,getUserID($db),$article->getID()));
-        }
-    }
-    if(isset($_POST["plus"]) && !empty($_POST["plus"]))
-    {
-        $name = htmlentities(trim($_POST["plus"]));
-        $article = selectArticleByName($name,$db);
-        $qte = $panier->getNumberOfArticle($article,$db,getUserID($db));
-        $q = "UPDATE Panier SET quantity = ? WHERE idUser = ? AND idArticle = ? ";
-        $stmt = $db->prepare($q);
-        $stmt->execute(array($qte+1,getUserID($db),$article->getID())); 
-    }
+    
     if(isset($_POST["delete"]) && !empty($_POST["delete"]))
     {
-        $name = htmlentities(trim($_POST["delete"]));
-        $article = selectArticleByName($name,$db);
+        $id = htmlentities(trim($_POST["delete"]));
+        $article = selectArticleByName($id,$db);
         $qte = $panier->getNumberOfArticle($article,$db,getUserID($db));
         $q = "DELETE FROM Panier WHERE idUser = ? AND idArticle = ?";
         $stmt = $db->prepare($q);
@@ -60,12 +41,14 @@ function getUserID(PDO $db)
     $id = $stmt->fetch();
     return $id["id"];
 }
-function selectArticleByName(string $name, PDO $db)
+function selectArticleByName(int $id, PDO $db) : Article
 {
-    $q = "SELECT * FROM Article WHERE nom = ?";
+    
+    $q = "SELECT * FROM Article WHERE id = ?";
     $stmt = $db->prepare($q);
-    $stmt->execute(array($name));
+    $stmt->execute(array($id));
     $data = $stmt->fetch(PDO::FETCH_ASSOC);    
+    
     return new Article(
         $data["id"],
         $data["nom"],
@@ -75,7 +58,6 @@ function selectArticleByName(string $name, PDO $db)
         $data["dateVente"],
         $data["imageProduit"]
     );
-    
 }
 function getprice(PDO $db) :float
 {
@@ -107,30 +89,75 @@ function getprice(PDO $db) :float
     <link rel="stylesheet" href="./styles/panier.css">
     <title>Mon panier</title>
 </head>
-<body>
+<body >
     <main>
         <?= $panier->displayPanier($db,getUserID($db))?>
-        <?= getprice($db)?>
+        <?=$panier->displayTotalPrice(getprice($db),getUserID($db))?>
     </main>
+
 </body>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<!-- DESACTIVER LE RECHARGEMENT DE LA PAGE -->
+<script>
+
+    let plus_buttons = document.getElementsByClassName("plus_button");
+    let minus_buttons = document.getElementsByClassName("minus_button");
+    let buttons_zone = document.getElementsByClassName("qte");
+    
+
+/*
+    for (let i = 0; i < buttons_zone.length; i++) {
+        // pour tous les boutons "+", on envoie au server l'evenement d'incrementation
+        buttons_zone[i].children[0].addEventListener("click", function(event) {
+            refreshData(0, i);
+        });
+
+        // pour tous les boutons "-", on envoie au server l'evenement de decrementation
+        buttons_zone[i].children[2].addEventListener("click", function(event) {
+            refreshData(1, i);
+        });
+    }
+*/
+    /*
+    for (let button of plus_buttons) {
+        button.addEventListener("click", function(event) {
+            updateArticle(0);
+        });
+    }
+    
+    for (let button of minus_buttons) {
+        button.addEventListener("click", function(event) {
+            updateArticle(1);
+        });
+    }
+    */
+
+
+    // 0 pour incrementer ; 1 pour decrementer ; 2 pour supprimer
+    function refreshData(id,type){
+      var display = document.getElementById(id);
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("POST", "./script/refreshData.php");
+      xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xmlhttp.send("id="+encodeURI(id)+"&type="+type);
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+          display.innerHTML = this.responseText;
+        } else {
+          display.innerHTML = "Loading...";
+        };
+      }
+    }
+    
+
+   
+
+    
+</script>
+
 </html>
 
 <?php
-/* Fonctionnel : 
-
-$panier = new Panier();
-$article1 = new Article(1,"a",12,1,'je','12','z');
-$article2 = new Article(2,"b",12,1,'je','12','z');
-$article3 = new Article(3,"a",12,1,'je','12','z');
-
-
-$panier->addArticle($article1);
-$panier->addArticle($article2);
-$panier->addArticle($article3);
-
-
-print_r($panier->getPanier());
-echo "</br>";
-$panier->removeArticle($article1);
-print_r($panier->getPanier());
-*/

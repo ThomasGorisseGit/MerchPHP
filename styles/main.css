@@ -215,8 +215,39 @@ h1.item-title {
 
 }
 
-/* @media screen and (max-width:740px) {
-    #toggle:checked + section {
-        filter: blur(1px);
+/* media queries */
+@media screen and (max-width:900px) {
+
+    *{
+        
     }
-} */
+    
+    #article_zone {
+        width: 95%;
+    }
+
+    .item-image>img {
+        height: auto;
+        width: 80%;
+    }
+
+    .article-item{
+        
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .item-description {
+        width: 100%;
+    }
+
+    .item-content {
+        flex-direction: column;
+    }
+
+
+    .item-buttons {
+        display: flex;
+        justify-content: center;
+    }
+}
