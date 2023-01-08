@@ -137,7 +137,6 @@ h1#title {
     display: none;
 }
 #notification{
-    visibility: hidden;
     width: 25px;
     height: 25px;
     color: white;
@@ -154,9 +153,10 @@ h1#title {
 
 
 /* CLOCHE NOTIFS */
-#noti_bell{
-    margin: 0;
-    color: white;
+#notification {
+    position: relative;
+    left: -20px;
+    bottom: 12px;
 }
 
 /* media queries */

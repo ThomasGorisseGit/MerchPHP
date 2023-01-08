@@ -1,3 +1,21 @@
+<?php
+
+include("script/connexionDatabase.php");
+$qte = 0;
+if(isset($_SESSION["email"]) && !empty($_SESSION["email"]))
+{
+    $q = "SELECT * FROM User INNER JOIN Panier ON User.id = Panier.idUser Where email = ? ";
+    $stmt = $db->prepare($q);
+    $stmt->execute(array($_SESSION["email"]));
+    $data = $stmt->fetchAll();
+    
+    foreach($data as $art)
+    {
+        $qte += $art["quantity"];
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -22,10 +40,7 @@
                 <h1 onclick="location.href='index.php'" id="title">SeinkSansGroove</h1>
                 <a class="page_link" href="#">Marques</a>
                 <a class="page_link" id="panier" href="panier.php">Panier</a>
-
-                <div id= "notification"><span id="echoqte"></span></div>
-                
-                
+                <div id= "notification"><span id="echoqte"><?=$qte?></span></div>
                 <form action="#" class="form-search">
                     <input class="research-bar" type="text" placeholder="Chercher une enceinte" name="search" id="navbar_searchbar">
                     <button id="search_button">

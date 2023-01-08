@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require "Panier.php";
 require "connexionDatabase.php";
 require "Article.php";
