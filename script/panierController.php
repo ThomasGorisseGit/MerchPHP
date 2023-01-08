@@ -10,7 +10,6 @@ if(isset($_SESSION["email"])&& !empty($_SESSION["email"]))
 {
     $panier = new Panier();
     $data = $panier->getUserPanier(getUserID($db),$db);
-    print_r($data);
     for($i=0;$i<sizeof($data);$i++)
     {
         
@@ -18,16 +17,22 @@ if(isset($_SESSION["email"])&& !empty($_SESSION["email"]))
     }
     if(isset($_POST["ajouterPanier"]))
     {
-        $article = selectArticleByName($_POST["ajouterPanier"],$db);
+        $article = selectArticleByid($_POST["ajouterPanier"],$db);
         addArticle($article,getUserID($db), $panier,$db);
         
     }
-    header('Location: ../index.php');
-}
+    $data =  $panier->getUserPanier(getUserID($db),$db);
+    $total = 0;
+    foreach($data as $article)
+    {
+        $total += $article["quantity"];
+    }
+  
+    
+}   
 else
 {
-    echo "Veuillez vous connecter. </br>";
-    echo '<a href="../index.php">Retourner vers l\'accueil</a>';
+    header("Location: connection.php");
 }
 
 
@@ -39,11 +44,11 @@ function getUserID(PDO $db)
     $id = $stmt->fetch();
     return $id["id"];
 }
-function selectArticleByName(string $name, PDO $db)
+function selectArticleByid(int $id, PDO $db)
 {
-    $q = "SELECT * FROM Article WHERE nom = ?";
+    $q = "SELECT * FROM Article WHERE id = ?";
     $stmt = $db->prepare($q);
-    $stmt->execute(array($name));
+    $stmt->execute(array($id));
     $data = $stmt->fetch(PDO::FETCH_ASSOC);    
     return new Article(
         $data["id"],
@@ -59,21 +64,19 @@ function selectArticleByName(string $name, PDO $db)
 function addArticle(Article $article,int $userID, Panier $panier, PDO $db)
 {
     $qte = $panier->getNumberOfArticle($article,$db,$userID);
-    echo "</br>" . $qte . "</br>";
     if($qte > 0)
     {
         $q = "UPDATE Panier SET quantity = ? WHERE idUser = ? AND idArticle = ? ";
         $stmt = $db->prepare($q);
         $stmt->execute(array($qte+1,$userID,$article->getID()));
-        echo "done1";
 
     }
     else{
         $q = "INSERT INTO Panier(idUser,idArticle,quantity)VALUES(?,?,?)";
         $stmt = $db->prepare($q);
         $stmt->execute(array($userID,$article->getID(),1));
-        echo "done2";
     }
     $panier->addArticle($article);
 }
+echo $total;
 ?>

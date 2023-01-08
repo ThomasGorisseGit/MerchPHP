@@ -136,7 +136,28 @@ h1#title {
 #toggle {
     display: none;
 }
+#notification{
+    visibility: hidden;
+    width: 25px;
+    height: 25px;
+    color: white;
+    background-color: #f72918;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+#echoqte {
+    position: relative;
+}
 
+
+/* CLOCHE NOTIFS */
+#noti_bell{
+    margin: 0;
+    color: white;
+}
 
 /* media queries */
 @media screen and (max-width:900px) {

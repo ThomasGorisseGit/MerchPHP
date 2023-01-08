@@ -1,3 +1,6 @@
 # TODO :
-- Système de PP 
-- Faire la gestion des articles
+- Historique des paiements
+- Administration
+- Comptabilité
+- Fiche produit
+- Gestion des stocks ???

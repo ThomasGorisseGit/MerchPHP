@@ -38,31 +38,26 @@ if (!isset($_SESSION["email"]) && isset($_COOKIE["email"], $_COOKIE["password"])
             <?php require_once("./Views/ArticleView.php");?>
         </section>
     </main>
-    <footer id= "main_footer">
-        <!-- Footer de la page d'accueil -->
-        <div id="footer_logos_container">
-            <img class="logo" src="./assets/Logo.png" alt="Logo de l'entreprise" id="footer_logo">
-            <h1 id="footer_title">SeinkSansGroove</h1>
-            <div id="contact_us_mail">seinksansgroove@gmail.com</div>
-            
-
-        </div>
-
-        <!-- <div id="footer_separator"></div> -->
-
-        <div id="black_container">
-            <div id="footer_infos">
-                <span id="footer_date">
-                    2022 - 2023
-                </span>
-
-                <span id="footer_names">
-                    Antoine Maïstre-Rice, Léa Jiner, Thomas Gorisse
-                </span>
-                <span>S3T-G1</span>
-            </div>
-        </div>
-    </footer>
+    <?php require_once("Views/footerView.html")?>
 </body>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script>
+        function addArticleToPanier(name) {
+            var display = document.getElementById("echoqte");
+            var div = document.getElementById("notification");
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("POST", "./script/panierController.php");
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xmlhttp.send("ajouterPanier="+name);
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    display.innerText = this.responseText;
+                    div.style.visibility = "visible";
 
+                } else {
+                    //display.innerHTML = "Loading...";
+                };
+            }
+        }
+    </script>
 </html>

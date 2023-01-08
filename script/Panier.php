@@ -135,25 +135,7 @@ class Panier{
         }
         return $html;
     }
-    function displayTotalPrice(float $total,int $userID) : string
-    {
-        
-        $html = '';
-        
-        $html.='<section>';
-        $html.='    <div>';
-        $html.='        <p class="prix">Prix des articles '.$total.'€ </p> ';
-        $html.='        <p class="livraison">Prix de la livraison '.$this->totalDelivery().'€</p>   ';
-        $html.='        <p class="total">TTC : '.$total + $this->totalDelivery().'€</p>           ';
-        $html.='    </div>';
-        $html.='    <form action="./stripe.php" method="POST" >';
-        $html.='        <button type="submit" value='.$userID.' name="paiement">Passer au règlement</button>';
-        $html.='    </form>';
-        $html.='<a href="./index.php">Retourner à l\'accueil</a>';
-        $html.='</section>';
-    
-        return $html;
-    }
+
 
 
 }

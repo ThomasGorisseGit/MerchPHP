@@ -15,11 +15,13 @@ WHERE idUser = ?
 $stmt = $db->prepare($q);
 $stmt->execute(array(getUserID($db)));
 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$type = $_POST["type"];
-$id = $_POST["id"];
 
-foreach($data as $article)
+if(isset($_POST["id"]))
 {
+    $type = $_POST["type"];
+    $id = $_POST["id"];
+    foreach($data as $article)
+    {
     
     $qte = $article["quantity"];
     if($article["idArticle"] == $id)
@@ -32,7 +34,7 @@ foreach($data as $article)
                 
             }
             else{
-                $qte = 0;
+                $qte = 1;
             }
             echo $qte;
         }
@@ -45,6 +47,8 @@ foreach($data as $article)
     $q = "UPDATE Panier SET quantity = ? WHERE idUser = ? AND idArticle = ? ";
     $stmt = $db->prepare($q);
     $stmt->execute(array($qte,getUserID($db),$article["id"]));
+    }
+
 }
 
 function getUserID(PDO $db) :int

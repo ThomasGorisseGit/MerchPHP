@@ -1,48 +1,41 @@
-*{
+* {
     font-family: 'Inter', sans-serif;
 }
 
 main {
     width: 70%;
     margin: 0 auto;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
 
 
-article{
-    /* background-color: #E9EAED; */
-    height: 190px;
+article {
+    background-color: #ffffff;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 10px;
     border-radius: 10px;
-    gap: 50px;
-    margin-bottom: 10px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    gap: 15px;
+    box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px, rgb(0 0 0 / 23%) 0px 3px 6px;
     transition: 0.2s;
-    
-    padding-right: 40px;
-    padding-left: 40px;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: 200px;
 }
 
 
 
 article>.description {
     display: flex;
-    justify-content: space-around;
-    width: 800px;
+    justify-content: space-between;
+    width: 55%;
 }
 
 
 /* Image de l'article */
 .image {
-    width: 40%;
-    max-width: 150px;
-    background-color: brown;
+    background-color: rgb(255, 255, 255);
     /* border-right: solid 2px rgb(37, 37, 37); */
     border-radius: 10px;
     display: flex;
@@ -53,17 +46,16 @@ article>.description {
 }
 
 .image>img {
-    max-height: 150px;
-    max-width: 150px;
     height: auto;
+    width: 150px;
 }
 
 .qte {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-content: center;
     align-items: center;
+    gap: 10px;
 }
 
 .qte button {
@@ -71,7 +63,7 @@ article>.description {
     height: 40px;
 }
 
-.content{
+.content {
     width: 50%;
 }
 
@@ -88,16 +80,21 @@ article button {
     align-items: center;
     padding: 1em;
     border: 0px solid transparent;
-    background-color: rgba(100,77,237,0.08);
+    background-color: rgba(100, 77, 237, 0.08);
     border-radius: 38%;
     transition: all 0.2s linear;
     transform: scale(1.2);
     cursor: pointer;
 }
 
+.prix,
+.livraison {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
 #delete {
-    position: relative;
-    left: 5px;
     background-color: #ff00004d;
 }
 
@@ -105,8 +102,9 @@ article button {
     background-color: #ff000091;
 }
 
-.qte>button{
+.qte>button {
     font-size: 15px;
+    background-color: #b1dae7;
 }
 
 .qte>button:hover {
@@ -117,4 +115,156 @@ article button {
     display: flex;
     flex-direction: column;
     gap: 30px;
+    width: 15%;
+}
+
+.qte>p {
+    width: 100%;
+    text-align: center;
+}
+
+/* INCONE */
+
+.fa-solid {
+    transform: scale(3);
+    margin-left: 22px;
+    margin-top: 50px;
+}
+
+
+/* TEXTE DESCRIPTIF */
+
+#shop_cart_text {
+    font-weight: bold;
+}
+
+
+
+/* FORMULAIRE DE PAIMENT */
+
+#form_purchase {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* BOUTON DE PAIEMENT */
+
+.cta {
+    position: relative;
+    margin: auto;
+    padding: 12px 18px;
+    transition: all 0.2s ease;
+    border: none;
+    background: none;
+    margin: 0 auto;
+}
+
+.cta:hover {
+    cursor: pointer;
+}
+
+.cta:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    border-radius: 50px;
+    background: #b1dae7;
+    width: 45px;
+    height: 45px;
+    transition: all 0.3s ease;
+}
+
+.cta span {
+    position: relative;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #234567;
+}
+
+.cta svg {
+    position: relative;
+    top: 0;
+    margin-left: 10px;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: #234567;
+    stroke-width: 2;
+    transform: translateX(-5px);
+    transition: all 0.3s ease;
+}
+
+.cta:hover:before {
+    width: 100%;
+    background: #b1dae7;
+}
+
+.cta:hover svg {
+    transform: translateX(0);
+}
+
+.cta:active {
+    transform: scale(0.95);
+}
+
+
+/* media queries */
+@media screen and (max-width:880px) {
+    main {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width:630px) {
+    .image>img {
+        width: 80px;
+    }
+
+    article>.description {
+        justify-content: space-around;
+    }
+
+    article {
+        gap: 0;
+    }
+}
+
+@media screen and (max-width:560px) {
+    .image>img {
+        width: 80px;
+    }
+
+    article>.description {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    article {
+        gap: 0;
+    }
+
+    #delete {
+        background-color: #ff00004d;
+        height: 43px;
+        width: 43px;
+    }
+
+    .qte button {
+        width: 15px;
+        height: 15px;
+    }
+
+    .prix,
+    .livraison {
+        flex-direction: column;
+        font-size: small;
+    }
+
+    
 }
