@@ -98,7 +98,7 @@ class Article{
         $html .='        </div>';
         $html .='    </section>';
         $html .='    <section class = "diverses_prices">';
-        $html .='        <div class="prix"><img width="30px" src = "./assets/caddie.png" alt=""/>'.$this->price;
+        $html .='        <div class="prix"><img width="30px" src = "./assets/caddie.png" alt=""/>'.'<span class="prix_value">'.$this->price.'</span>';
         $html .='€        </div>';
         $html .='        <div class="livraison">';
         $html .=' <img width="30px" src = "./assets/truck.png" alt=""/>';

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "./script/connexionDatabase.php";
 if(isset($_POST["paiement"]))
 {
@@ -32,7 +33,9 @@ $stripe->taxRates->create(
     'description' => 'French TVA',
   ]
 );
-$emailClient = $_POST['email'];
+
+$emailClient = $_SESSION['email'];
+
 
 foreach($data as $row)
 {
@@ -53,9 +56,7 @@ foreach($data as $row)
 }
 $checkout_session = \Stripe\Checkout\Session::create([
   'line_items' => $items,
-  'metadata' => [
-    'client_email'=> $emailClient
-  ],
+  
   'shipping_options' => [
     [
       'shipping_rate_data' => [
@@ -72,7 +73,10 @@ $checkout_session = \Stripe\Checkout\Session::create([
 
   'mode' => 'payment',
   'success_url' => $YOUR_DOMAIN . '/success.php',
-  'cancel_url' => $YOUR_DOMAIN . '/cancel.html',
+  'cancel_url' => $YOUR_DOMAIN . '/cancel.php',
+  'metadata' => [
+    'client_email'=> $emailClient,
+  ],
   
   
 ]);

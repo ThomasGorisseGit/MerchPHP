@@ -1,61 +1,26 @@
 <?php
+session_start();
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-require "Article.php";
-require "Panier.php";
-require "User.php";
 require "connexionDatabase.php";
+require "Panier2.php";
 
 
-$q = "SELECT * FROM Panier INNER JOIN Article ON Article.id = Panier.idArticle
-WHERE idUser = ?
-";
-$stmt = $db->prepare($q);
-$stmt->execute(array(getUserID($db)));
-$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 if(isset($_POST["id"]))
 {
-    $type = $_POST["type"];
-    $id = $_POST["id"];
-    foreach($data as $article)
+    $panier = new Panier2($db);
+    if($_POST["type"]==1)
     {
-    
-    $qte = $article["quantity"];
-    if($article["idArticle"] == $id)
-    {
-        if($type == 1 )
+        if($panier->getQuantityOfAnArticle($_POST["id"])>1)
         {
-            if($qte>1)
-            {
-                $qte--;
-                
-            }
-            else{
-                $qte = 1;
-            }
-            echo $qte;
-        }
-        else{
-            $qte++;
-            echo $qte;
-
-        }
+            $panier->removeArticle($_POST["id"]);
+        }       
+    }  
+    if($_POST["type"]==0)
+    {
+        $panier->addArticle($_POST["id"]);
     }
-    $q = "UPDATE Panier SET quantity = ? WHERE idUser = ? AND idArticle = ? ";
-    $stmt = $db->prepare($q);
-    $stmt->execute(array($qte,getUserID($db),$article["id"]));
-    }
-
-}
-
-function getUserID(PDO $db) :int
-{
-    $q = "SELECT id FROM User WHERE email = ?";
-    $stmt = $db->prepare($q);
-    $stmt->execute(array($_SESSION["email"]));
-    $id = $stmt->fetch();
-    return $id["id"];
+    echo $panier->getQuantityOfAnArticle($_POST["id"]);
+    
 }

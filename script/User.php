@@ -7,13 +7,14 @@ class User{
     private string $email;
     private string $password;
     private string $image;
-
+    private bool $admin;
     function __construct(string $name, string $email, string $password,?string $image="/assets/avatar/default.png")
     {
         $this->image = $image;
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
+        $this->admin = false;
     }
     function setImage(string $image)
     {
@@ -30,10 +31,18 @@ class User{
             $this->password = $data["password"];
             $this->name = $data["name"];
             $this->image = $data["profilePicture"];
+            $this->admin = $data["administrator"];
             return true;
         }
         return false;
 
+    }
+    function isAdmin(string $email,PDO $db){
+        $q="SELECT administrator FROM User WHERE email = ?";
+        $stmt = $db->prepare($q);
+        $stmt->execute(array($email));
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $data["administrator"];
     }
     function hashPassword() 
     {
@@ -79,6 +88,7 @@ class User{
         $_SESSION["email"] = $this->email;
         $_SESSION["password"] = $this->password;
         $_SESSION["image"] = $this->image;
+        $_SESSION["administrator"] = $this->admin;
     }
     function  rememberMe()
     {
@@ -90,6 +100,7 @@ class User{
         setcookie("email",$email ,time() +365 * 24 * 3600);
         setcookie("password",$password,time() + 365 * 24 * 3600);
         setcookie("image",$image,time() + 365 * 24 * 3600);
+        setcookie("admin",$this->admin,time() + 365 * 24 * 3600);
     }
     function setName(string $name) 
     {

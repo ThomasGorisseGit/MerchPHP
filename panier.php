@@ -1,74 +1,26 @@
 <?php
 require "script/Article.php";
-require "script/Panier.php";
+require "script/Panier2.php";
 require "script/User.php";
 require "script/connexionDatabase.php";
 
 if (isset($_SESSION["email"]) && !empty($_SESSION["email"])) {
 
-    $panier = new Panier();
-    $data = $panier->getUserPanier(getUserID($db), $db);
-    for ($i = 0; $i < sizeof($data); $i++) {
-        $panier->fillPanierOfArticle($data[$i]["idArticle"], $db);
-    }
-    if (sizeof($panier->getPanier()) == 0) {
-        echo "votre panier est vide </br>";
-        echo '<a href="./index.php">Retour vers l\'accueil</a>';
-    }
+    $panier = new Panier2($db);
 
     if (isset($_POST["delete"]) && !empty($_POST["delete"])) {
-        $id = htmlentities(trim($_POST["delete"]));
-        $article = selectArticleByName($id, $db);
-        $qte = $panier->getNumberOfArticle($article, $db, getUserID($db));
+        $id = $_POST["delete"];
+        $qte = $panier->getQuantityOfAnArticle($id);
+        
         $q = "DELETE FROM Panier WHERE idUser = ? AND idArticle = ?";
         $stmt = $db->prepare($q);
-        $stmt->execute(array(getUserID($db), $article->getID()));
-        header('Refresh:0');
+        $stmt->execute(array($panier->getUserID(),$id));
+        // header('Refresh:0');
     }
-} else {
+} 
+else {
     header('Location: ./connection.php');
 }
-function getUserID(PDO $db)
-{
-    $q = "SELECT id FROM User WHERE email = ?";
-    $stmt = $db->prepare($q);
-    $stmt->execute(array($_SESSION["email"]));
-    $id = $stmt->fetch();
-    return $id["id"];
-}
-function selectArticleByName(int $id, PDO $db): Article
-{
-
-    $q = "SELECT * FROM Article WHERE id = ?";
-    $stmt = $db->prepare($q);
-    $stmt->execute(array($id));
-    $data = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    return new Article(
-        $data["id"],
-        $data["nom"],
-        $data["prix"],
-        $data["prixLivraison"],
-        $data["description"],
-        $data["dateVente"],
-        $data["imageProduit"]
-    );
-}
-function getprice(PDO $db): float
-{
-    $panier = new Panier();
-    $data = $panier->getUserPanier(getUserID($db), $db);
-    $total = 0;
-    for ($i = 0; $i < sizeof($data); $i++) {
-        $panier->fillPanierOfArticle($data[$i]["idArticle"], $db);
-    }
-
-    for ($i = 0; $i < sizeof($panier->getPanier()); $i++) {
-        $total += $panier->getPanier()[$i]->getPrice() * $data[$i]["quantity"];
-    }
-    return $total;
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -86,10 +38,10 @@ function getprice(PDO $db): float
     
 <?php require_once("./Views/navbarView.php");?>
 
-    <main>
-        <?= $panier->displayPanier($db, getUserID($db)) ?>
+    <main id="panier_main">
+        <?= $panier->displayPanier() ?>
         <form action="stripe.php" method="post" id="form_purchase">
-            <button class="cta" type="submit" value="<?= getUserID($db) ?>" name = "paiement">
+            <button id="button_purchase" class="cta" type="submit" value="<?= $panier->getUserID() ?>" name = "paiement">
                 <span>Acheter les articles</span>
                 <svg viewBox="0 0 13 10" height="10px" width="15px">
                     <path d="M1,5 L11,5"></path>
@@ -104,15 +56,23 @@ function getprice(PDO $db): float
 
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script>
+        
         function refreshData(id, type) {
             var display = document.getElementById(id);
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.open("POST", "./script/refreshData.php");
             xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xmlhttp.send("id=" + encodeURI(id) + "&type=" + type);
+
+
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState === 4 && this.status === 200) {
                     display.innerText = this.responseText;
+                    console.log(id);
+
+                    // mettre a jour le prix
+
+
                 } else {
                     //display.innerHTML = "Loading...";
                 };
@@ -120,6 +80,7 @@ function getprice(PDO $db): float
         }
     </script>
     <script src="https://kit.fontawesome.com/dbf52f01db.js" crossorigin="anonymous"></script>
+    
 </body>
 
 </html>

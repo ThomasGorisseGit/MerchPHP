@@ -213,6 +213,26 @@ article button {
     transform: scale(0.95);
 }
 
+/* achat avec succès */
+.successFail {
+    background-color: #ffffff;
+    display: flex;
+    border-radius: 10px;
+    gap: 25px;
+    box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px, rgb(0 0 0 / 23%) 0px 3px 6px;
+    transition: 0.2s;
+    flex-direction: column;
+    padding: 3%;
+}
+
+.attention {
+    border-left: black solid 2px;
+    margin: 0 4%;
+    background-color: #0eaf003b;
+    padding: 2%;
+    border-radius: 5px;
+}
+
 
 /* media queries */
 @media screen and (max-width:880px) {
