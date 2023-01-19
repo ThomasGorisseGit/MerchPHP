@@ -19,7 +19,8 @@ if (!isset($_SESSION["email"]) && isset($_COOKIE["email"], $_COOKIE["password"])
 $qte = 0;
 if(isset($_SESSION["email"]) && !empty($_SESSION["email"]))
 {
-    $q = "SELECT * FROM User INNER JOIN Panier ON User.id = Panier.idUser Where email = ? ";
+    // $q = "SELECT * FROM User INNER JOIN Panier ON User.id = Panier.idUser Where email = ? ";
+    $q="SELECT * FROM Panier INNER JOIN User ON User.id=Panier.idUser INNER JOIN Facture ON Panier.idFacture=Facture.id WHERE User.email=? AND Facture.alreadyPaid=False ";
     $stmt = $db->prepare($q);
     $stmt->execute(array($_SESSION["email"]));
     $data = $stmt->fetchAll();

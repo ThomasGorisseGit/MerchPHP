@@ -1,6 +1,12 @@
 <?php
 require "../script/connexionDatabase.php";
 require "../script/User.php";
+$user = new User($_SESSION["name"],$_SESSION["email"],$_SESSION["password"]);
+$user->getUserInfos($db);
+if(!$user->isAdmin($_SESSION["email"],$db))
+{
+    header("Location: index.php");
+}
 if(isset($_POST["email"]))
 {
     addAdministrator($_POST["email"],$db);
@@ -29,4 +35,5 @@ function addAdministrator(string $email,PDO $db)
 <form action=""method="POST">
     <input type="email" name ="email" placeholder="Saisir l'email de votre futur administrateur">
     <button type="submit">Ajouter</button>
+    <a href="./administration.php">Retour vers le control pannel</a>
 </form>

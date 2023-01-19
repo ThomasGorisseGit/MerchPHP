@@ -11,15 +11,15 @@ class Panier2{
     }
     function getPanier() : array
     {
-        $q="SELECT * FROM Panier WHERE idUser = ?";
+        $q="SELECT * FROM Panier WHERE idUser = ? AND idFacture = ?";
         $stmt = $this->db->prepare($q);
-        $stmt->execute(array($this->userID()));
+        $stmt->execute(array($this->userID(),$this->hasFacture()));
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }
     function hasFacture()
     {
-        $q="SELECT Facture.id FROM Facture INNER JOIN User ON Facture.idUser = User.id WHERE User.email = ?";
+        $q="SELECT Facture.id FROM Facture INNER JOIN User ON Facture.idUser = User.id WHERE User.email = ? AND alreadyPaid=0";
         $stmt = $this->db->prepare($q);
         $stmt->execute(array($_SESSION["email"]));
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -49,7 +49,7 @@ class Panier2{
     }
     function getQuantityOfAnArticle(int $idArticle) 
     {
-        $q="SELECT * FROM Panier WHERE Panier.idUser = ? AND idArticle = ?";
+        $q="SELECT * FROM Panier INNER JOIN Facture ON Facture.id=Panier.idFacture WHERE Panier.idUser = ? AND Panier.idArticle = ? AND Facture.alreadyPaid=False ";
         $stmt = $this->db->prepare($q);
         $stmt->execute(array($this->userID(),$idArticle));
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -63,26 +63,28 @@ class Panier2{
     function addArticle(int $idArticle)
     {
         $facture = $this->hasFacture();
-        
+
         if(!$facture)
         {
-            /* S'il n'a pas de facture on en créé une  */
+            /* S'il n'a pas de facture on en créé une ou s'il en a une nouvelle  */
             $q = "INSERT INTO Facture(idUser) VALUES (?)";
             $stmt = $this->db->prepare($q);
             $stmt->execute(array($this->userID));
         }
         
-        if($this->getQuantityOfAnArticle($idArticle)>0)
+        if($this->getQuantityOfAnArticle($idArticle)==0)
+        {
+            $q="INSERT INTO Panier(idUser,idArticle,quantity,idFacture)VALUES(?,?,?,?)";
+            $stmt = $this->db->prepare($q);
+            $stmt->execute(array($this->userID,$idArticle,1,$this->hasFacture()));
+        }
+        else
         {
             $q="UPDATE Panier SET quantity= ? WHERE Panier.idUser = ? AND Panier.idArticle = ?";
             $stmt = $this->db->prepare($q);
             $stmt->execute(array($this->getQuantityOfAnArticle($idArticle)+1,$this->userID,$idArticle));
         }
-        else{
-            $q="INSERT INTO Panier(idUser,idArticle,quantity,idFacture)VALUES(?,?,?,?)";
-            $stmt = $this->db->prepare($q);
-            $stmt->execute(array($this->userID,$idArticle,1,$this->hasFacture()));
-        }
+
         
     }
     function userID()

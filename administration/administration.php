@@ -15,13 +15,20 @@ if(!$user->isAdmin($_SESSION["email"],$db))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/assets/Logo.png">
+    <link rel="stylesheet" href="../styles/administration.css">
     <title>Control pannel</title>
 </head>
 <body>
-    <h1>bienvenu admin</h1>
-    <a href="#">Ajouter article</a>
-    <a href="./addAdministrator.php">Ajouter admin</a>
-    <a href="#">Voir les membres</a>
-    <a href="#">Voir les paiements</a>
+    <h1 id="welcome_h1">Bienvenue <strong><?=$_SESSION["name"]?></strong></h1>
+    <div class="options">
+        <a href="./addArticle.php">Ajouter article</a>
+        <a href="./addAdministrator.php">Ajouter admin</a>
+        <a href="./displayMembers.php">Voir les membres</a>
+        <a href="#">Voir les paiements</a>
+    </div>
+    
+    <div id="menu_container">
+        <a id="menu_button" href="../index.php">Accueil</a>
+    </div>
 </body>
 </html>

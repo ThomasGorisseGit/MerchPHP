@@ -1,0 +1,33 @@
+*{
+    font-family: 'Inter', sans-serif;
+}
+
+#welcome_h1{
+    text-align: center;
+}
+
+.options{
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 200px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+    gap: 20px;
+}
+
+
+#menu_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    margin-top: 50px;
+}
+
+#menu_button{
+    
+}

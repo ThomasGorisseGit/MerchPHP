@@ -10,13 +10,14 @@ $panier = new Panier2($db);
 if(isset($_POST["ajouterPanier"]))
 {
     $panier->addArticle($_POST["ajouterPanier"]);
-}
-$data = $panier->getPanier();
-$total = 0;
+    $data = $panier->getPanier();
 
-foreach($data as $article)
-{
-    
-    $total += $article["quantity"];
+    $total = 0;
+
+    foreach($data as $article)
+    {
+        
+        $total += $article["quantity"];
+    }
+    echo $total;
 }
-echo $total;
