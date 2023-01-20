@@ -95,15 +95,29 @@ h1#title {
     justify-content: center;
     background-image: url("../assets/topmarques.svg");
     background-size: 100% 100%;
+    height: 85px;
 }
 
-.brands-list>button:hover {
+.brands-list>form {
+    display: flex;
+    width: 32%;
+    justify-content: space-evenly;
+}
+
+.brands-list button:hover {
     transform: scale(1.05);
     transition: 0.3s;
 }
 
-.brands-list>button {
+.brands-list button {
+    width: 133%;
+    max-width: 118px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
     transition: 0.2s;
+    /* font-size: 1%; */
 }
 
 

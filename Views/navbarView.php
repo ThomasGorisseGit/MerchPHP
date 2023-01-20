@@ -24,9 +24,9 @@
                 <!-- <a class="page_link" href="#">Marques</a> -->
                 <a class="page_link" href="index.php">Produits</a>
                 <a class="page_link" id="panier" href="panier.php">Panier</a>
-                <form action="#" class="form-search">
+                <form action="index.php" method="POST" class="form-search">
                     <input class="research-bar" type="text" placeholder="Chercher une enceinte" name="search" id="navbar_searchbar">
-                    <button id="search_button">
+                    <button type="submit" id="search_button">
                         <img src="./assets/search-logo.png" alt="search" width="15px">
                     </button>
                 </form>
@@ -36,9 +36,11 @@
             </div>
         </nav>
         <nav class="brands-list">
-            <button>Marshall</button>
-            <button>JBL</button>
-            <button>Bose</button>
+            <form action="index.php" method="POST">
+                <button name="submit" value="Marshall">Marshall</button>
+                <button name="submit" value="JBL">JBL</button>
+                <button name="submit" value="Bose">Bose</button>
+            </form>
         </nav>
     </header>
 </body>

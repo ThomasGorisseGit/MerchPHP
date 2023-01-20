@@ -1,0 +1,135 @@
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+main{
+    width: 60%;
+}
+
+
+section.sheet_zone{
+    display: flex;
+    margin-top: 200px;
+    transform: scale(1.3);
+    justify-content: center;
+}
+
+
+#image_container{
+    display: flex;
+    
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 20px;
+}
+
+/* #image_container::after{
+    content: "";
+    border-left-style: solid;
+    display: block;
+    height: 103%;
+    margin-left: 63px;
+    margin-right: 33px;
+} */
+
+#product_image{
+    width: 100%;
+    max-width: 300px;
+    height: fit-content;
+    align-self: center;
+}
+
+
+#division{
+    border-left-style: solid;
+    display: block;
+
+    border-width: 1px;
+    margin-left: 63px;
+    margin-right: 146px;
+}
+
+.presentation::after{
+    content: "";
+    border-top-style: solid;
+    display: block;
+    width: 100%;
+    margin-top: 41px;
+    margin-bottom: 53px;
+}
+
+#item-price-delivery{
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+#item_price{
+    color: rgb(194, 0, 0);
+    font-size: larger;
+    font-weight: bold;
+}
+
+#delivery_zone{
+    display: flex;
+    flex-direction: column;   
+    gap: 7px;
+    width: 60px;
+}
+
+#item-price-delivery>div>img{
+    width: 60%;
+}
+
+
+
+#shop_cart_container{
+    display: flex;
+    justify-content: end;
+}
+
+#shop_cart_container button{
+    border-radius: 4px;
+    background-color: #12b034;
+    border: 1px solid #12b034;
+    cursor: pointer;
+    color: #ffffff;
+    padding: 10px 17px;
+}
+
+#shop_cart_container button:hover{
+    background-color: #17862f;
+}
+
+
+#home_link_container{
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+#home_link{
+    
+    outline: none;
+    text-decoration: none;
+    color: #BFC3C8;
+    border-bottom-style: solid;
+    border-color: rgba(0, 0, 0, 0);
+    padding-bottom: 5px;
+    transition: 0.2s;
+}
+
+#home_link:hover{
+    border-color: rgb(0, 0, 0);
+    transition: 0.4s;
+    color: black;
+}

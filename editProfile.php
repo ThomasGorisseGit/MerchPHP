@@ -42,11 +42,16 @@ if (isset($_POST["submit"])) {
 
                 if (move_uploaded_file($_FILES["pp"]["tmp_name"], $path)) {
                     $user->setImage($path);
+                    
                     $update = $db->prepare("UPDATE User SET profilePicture = ? WHERE id = ?");
                     $update->execute(array(
                         $path,
                         $data["id"]
                     ));
+                    if(isset($_COOKIE["email"]))
+                    {
+                        $user->rememberMe();
+                    }
                 } else {
                     echo ("Une erreur est survenue lors de l'importation de votre photo de profil");
                 }

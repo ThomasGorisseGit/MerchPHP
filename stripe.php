@@ -1,12 +1,16 @@
 <?php
 session_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require "./script/connexionDatabase.php";
 if(isset($_POST["paiement"]))
 {
   $q = "SELECT * FROM Panier 
+  INNER JOIN Facture ON Facture.id = Panier.idFacture
   INNER JOIN Article 
   ON Panier.idArticle = Article.id
-  WHERE idUser = ? ";
+  WHERE Panier.idUser = ?  AND Facture.alreadyPaid=False";
   $stmt = $db->prepare($q);
   $stmt->execute(array($_POST["paiement"]));
   $data = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -69,8 +69,8 @@ class Article{
         $html .='            '.$this->description.'';
         $html .='    </p>';
         $html .='           <div class="item-buttons">';                  
-        $html .='               <button class="item-button-grey">Fiche produit</button>';
-        $html .='               <button name="ajouterPanier" onclick="addArticleToPanier('.$this->id.')" value = "'.$this->name.'"class="item-button-green" >Ajouter au panier</button>';
+        $html .='               <form action="Views/ficheArticle.php" method="GET" ><button name="produit" value="'.$this->id.'" class="item-button-grey"><span>Fiche produit</span></button></form>';
+        $html .='               <button name="ajouterPanier" data-hover="ratio" onclick="addArticleToPanier('.$this->id.')" value = "'.$this->name.'"class="item-button-green" >Ajouter au panier</button>';
         $html .='           </div>';
         $html .='        <span class="date-word">Date : </span>';
         $html .='        <span class="item-date">'.$this->date.'</span>';

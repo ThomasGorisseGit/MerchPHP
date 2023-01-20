@@ -11,9 +11,7 @@ if(isset($_POST["ajouterPanier"]))
 {
     $panier->addArticle($_POST["ajouterPanier"]);
     $data = $panier->getPanier();
-
     $total = 0;
-
     foreach($data as $article)
     {
         

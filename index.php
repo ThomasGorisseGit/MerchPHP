@@ -1,5 +1,7 @@
 <?php
-
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 session_start();
 require "./script/User.php";
 require "./script/Article.php";
@@ -39,6 +41,36 @@ function displayAdmin() : string
 {
     return '<a href="administration/administration.php">Administration</a>';
 }
+
+
+function displayFilter(string $search,PDO $db)
+{
+    $query = "SELECT * FROM Article WHERE nom LIKE '%".$search."%'";
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if(count($data)>0){
+        for($i=0;$i<count($data);$i++)
+        {
+            $id = $data[$i]["id"];
+            $name = $data[$i]["nom"];
+            $price = $data[$i]["prix"];
+            $delivery = $data[$i]["prixLivraison"];
+            $description = $data[$i]["description"];
+            $date = $data[$i]["dateVente"];
+            $image = $data[$i]["imageProduit"];
+            $art = new Article($id,$name,$price,$delivery,$description,$date,$image);
+            echo $art->displayArticle();
+        }
+    }
+    else{
+        echo "Il n'y a aucun article correspondant à votre recherche";
+    }
+    
+}
+
+    
+
 
 ?>
 
@@ -84,29 +116,53 @@ function displayAdmin() : string
                 
                 ?>
                 <a class="page_link" id="panier" href="panier.php">Panier</a>
-                
                 <div id= "notification"><span id="echoqte"><?=$qte?></span></div>
-                <form action="#" class="form-search">
+                
+                <?php
+                    if(isset($_POST["a"]))
+                    {
+                        echo "in";
+                    }
+                ?>
+                <form action="" method="POST" class="form-search">
                     <input class="research-bar" type="text" placeholder="Chercher une enceinte" name="search" id="navbar_searchbar">
-                    <button id="search_button">
+                    <button type="submit" id="search_button">
                         <img src="./assets/search-logo.png" alt="search" width="15px">
                     </button>
                 </form>
                 <div class="user">
-                    <?php require_once("./Views/connectionView.php"); ?>
+                    <?php 
+                    
+                    require_once("./Views/connectionView.php"); ?>
                 </div>
             </div>
         </nav>
         <nav class="brands-list">
-            <button>Marshall</button>
-            <button>JBL</button>
-            <button>Bose</button>
+            <form action="./index.php" method="POST">
+                <button name="submit" value="Marshall">Marshall</button>
+                <button name="submit" value="JBL">JBL</button>
+                <button name="submit" value="Bose">Bose</button>
+            </form>
         </nav>
     </header>
-    <main>
+    <main id="article_zone">
         <!-- Contenu de la page d'accueil yo-->
         <section>
-            <?php require_once("./Views/ArticleView.php");?>
+            <?php 
+            
+            if(isset($_POST["submit"]))
+            {
+                
+                displayFilter($_POST["submit"],$db);
+            }
+            elseif(isset($_POST["search"]))
+            {
+                displayFilter($_POST["search"],$db);
+            }
+            else{
+                require_once("./Views/ArticleView.php");
+            }
+            ?>
         </section>
     </main>
     <?php require_once("Views/footerView.html")?>
@@ -133,4 +189,6 @@ function displayAdmin() : string
             }
         }
     </script>
+
+    
 </html>

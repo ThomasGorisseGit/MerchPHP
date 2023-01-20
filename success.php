@@ -7,8 +7,40 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+function content() : string
+{
+    $html="";
+    $html.='<h1>Paiement accepté</h1>';
+    $html.='<p>Merci d\'avoir passé commande chez nous, en éspérant vous revoir très vite !</p>';
+    return $html;
+}
+$mail = $_SESSION["email"];
+$phpmailerContent = content();
 
-
+function postCurl($url, $data, $mailgunApi)
+{
+ 
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+    curl_setopt($ch, CURLOPT_USERPWD,$mailgunApi);
+    $o = curl_exec($ch);
+    curl_close($ch);
+    return $o;
+}
+require_once("./mailgun.php");
+postCurl("https://api.eu.mailgun.net/v3/seinksansgroove.studio/messages",
+    array(
+        'from' => '512Admin mailgun@seinksansgroove.studio',
+        'to' => $mail,
+        'subject' => 'Confirmation de paiement',
+        'html' => $phpmailerContent
+    ),
+    $MAIL_GUN_API_KEY
+);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -23,9 +55,9 @@ error_reporting(E_ALL);
 
 <body>
     <?php require_once("./Views/navbarView.php");?>
-
+    
+    
     <main>
-
         <div class="successFail">
             <h1>Merci pour votre commande !</h1>
             <p class="thankyou">L'équipe de SeinkSansGroove vous remercie de nous avoir fait confiance et d'avoir
