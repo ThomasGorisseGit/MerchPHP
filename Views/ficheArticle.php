@@ -4,12 +4,17 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require "../script/connexionDatabase.php";
 require "../script/Panier2.php";
-$panier = new Panier2($db);
-if(isset($_POST["ajouterPanier"]))
+if(isset($_POST["ajouterPanier"],$_SESSION["email"]))
 {
+    $panier = new Panier2($db);
     $panier->addArticle($_POST["ajouterPanier"]);
     header('Location:../index.php');
 }
+elseif((isset($_POST["ajouterPanier"])))
+{
+    header("Location:../connection.php");
+}
+
 function testDisplayArticle()
 {
     global $db;

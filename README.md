@@ -21,6 +21,10 @@ La gestion du compte (avec photo de profil), le panier, les searchbar, l'envoie 
 
 Le site aurait pu être encore amélioré autant sur le frontend que le backend mais celui-ci est partiellement finit.
 
+### Compte admin :
+email = admin@gmail.com
+password = administrateur
+
 Il nous a appris l'installation d'un serveur VPS (BDD + DNS + PHP), la gestion du backend et la mise en place du frontend/responsive.
 Note à moi même: il ne faut pas coder tous en SSH en même temps car les serveurs ne sont pas conçus pour et qu'ils n'ont pas assez de RAM ^^
 
